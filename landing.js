@@ -210,6 +210,7 @@
 
   var intakeForm = document.getElementById('client-intake-form');
   var intakeStatus = document.getElementById('client-intake-status');
+  var intakeFormStartedAt = Date.now();
   var packageLinks = document.querySelectorAll('[data-package]');
   var templateLinks = document.querySelectorAll('[data-template]');
   function setPreferredPackage(packageName) {
@@ -239,6 +240,11 @@
         intakeForm.reportValidity();
         return;
       }
+      var honey = intakeForm.querySelector('input[name="botcheck"]');
+      if ((honey && honey.value) || Date.now() - intakeFormStartedAt < 1500) {
+        if (intakeStatus) intakeStatus.textContent = 'Request received.';
+        return;
+      }
       var data = new FormData(intakeForm);
       var recipient = intakeForm.getAttribute('data-recipient') || 'hello@invitea.app';
       var subject = 'INVITEA Project Request — ' + (data.get('eventType') || 'New Event');
@@ -257,18 +263,33 @@
         data.get('details') || ''
       ].join('\n');
 
+      var savedToFirestore = false;
       if (window.__INVITEA_DB) {
         try {
-          var doc = {};
-          data.forEach(function(v, k) { doc[k] = v; });
+          var doc = buildFirestorePayload(data);
           doc.submitted_at = window.__INVITEA_TS ? window.__INVITEA_TS() : new Date().toISOString();
           await window.__INVITEA_ADD(window.__INVITEA_COL(window.__INVITEA_DB, 'intake'), doc);
+          savedToFirestore = true;
         } catch (err) { console.warn('[intake] Firestore write failed', err); }
+      }
+
+      if (savedToFirestore) {
+        intakeForm.reset();
+        if (intakeStatus) intakeStatus.textContent = 'Request received. We will follow up with your next-step checklist.';
+        return;
       }
 
       window.location.href = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       if (intakeStatus) intakeStatus.textContent = 'Opening your email app with the project brief.';
     });
+  }
+
+  function buildFirestorePayload(data) {
+    var doc = {};
+    data.forEach(function(v, k) {
+      if (k !== 'botcheck' && k.charAt(0) !== '_') doc[k] = v;
+    });
+    return doc;
   }
 
   /* ---- Smooth scroll for anchor links ---- */

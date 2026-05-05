@@ -385,8 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cfg.provider === 'firestore') {
       if (!window.__INVITEA_DB) { console.warn('[rsvp] Firestore not initialized'); return true; }
-      const data = {};
-      fd.forEach((v, k) => { data[k] = v; });
+      const data = buildFirestorePayload(fd);
       data.submitted_at = window.__INVITEA_TS ? window.__INVITEA_TS() : new Date().toISOString();
       await window.__INVITEA_ADD(window.__INVITEA_COL(window.__INVITEA_DB, 'rsvps'), data);
       return true;
@@ -416,6 +415,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
+  function buildFirestorePayload(fd) {
+    const data = {};
+    fd.forEach((v, k) => {
+      if (k !== 'botcheck' && k.charAt(0) !== '_') data[k] = v;
+    });
+    return data;
+  }
+
   // ==========================================================
   // Guestbook — localStorage persistence per slug + sanitized DOM render
   // ==========================================================
@@ -429,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
   hydrateGuestbook();
 
   if (guestbookForm) {
-    guestbookForm.addEventListener('submit', e => {
+    guestbookForm.addEventListener('submit', async e => {
       e.preventDefault();
       const nameInput = document.getElementById('gb-name');
       const msgInput = document.getElementById('gb-msg');
@@ -443,6 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       appendGuestbookMessage({ author: name, message: msg, persisted: true });
       saveGuestbookEntry({ author: name, message: msg, ts: Date.now() });
+      await saveGuestbookToFirestore({ author: name, message: msg });
 
       nameInput.value = '';
       msgInput.value = '';
@@ -483,6 +491,23 @@ document.addEventListener('DOMContentLoaded', () => {
       while (all.length > 50) all.shift();
       localStorage.setItem(storageKey, JSON.stringify(all));
     } catch (_) { /* localStorage may be disabled */ }
+  }
+
+  async function saveGuestbookToFirestore(entry) {
+    if (!window.__INVITEA_DB || !window.__INVITEA_ADD || !window.__INVITEA_COL) return;
+    const data = {
+      author: entry.author,
+      message: entry.message,
+      event_slug: window.__INVITEA_SLUG || '',
+      guest_id: window.__INVITEA_GUEST || '',
+      invitation_url: window.location.href,
+      submitted_at: window.__INVITEA_TS ? window.__INVITEA_TS() : new Date().toISOString()
+    };
+    try {
+      await window.__INVITEA_ADD(window.__INVITEA_COL(window.__INVITEA_DB, 'guestbook'), data);
+    } catch (err) {
+      console.warn('[guestbook] Firestore write failed', err);
+    }
   }
 
   function hydrateGuestbook() {

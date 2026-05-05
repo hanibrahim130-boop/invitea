@@ -1,0 +1,68 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /intake/{documentId} {
+      allow create: if request.resource.data.keys().hasOnly([
+        'clientName',
+        'email',
+        'phone',
+        'eventType',
+        'eventDate',
+        'guestCount',
+        'package',
+        'preferredTemplate',
+        'style',
+        'details',
+        'submitted_at'
+      ])
+      && request.resource.data.clientName is string
+      && request.resource.data.email is string
+      && request.resource.data.phone is string
+      && request.resource.data.eventType is string
+      && request.resource.data.details is string
+      && request.resource.data.clientName.size() <= 120
+      && request.resource.data.email.size() <= 180
+      && request.resource.data.phone.size() <= 80
+      && request.resource.data.eventType.size() <= 80
+      && request.resource.data.details.size() <= 3000;
+      allow read, update, delete: if false;
+    }
+
+    match /rsvps/{documentId} {
+      allow create: if request.resource.data.keys().hasOnly([
+        'name',
+        'email',
+        'phone',
+        'response',
+        'guests',
+        'notes',
+        'event_slug',
+        'guest_id',
+        'invitation_url',
+        'submitted_at'
+      ])
+      && request.resource.data.name is string
+      && request.resource.data.response is string
+      && request.resource.data.name.size() <= 120
+      && request.resource.data.response.size() <= 40;
+      allow read, update, delete: if false;
+    }
+
+    match /guestbook/{documentId} {
+      allow create: if request.resource.data.keys().hasOnly([
+        'author',
+        'message',
+        'event_slug',
+        'guest_id',
+        'invitation_url',
+        'submitted_at'
+      ])
+      && request.resource.data.author is string
+      && request.resource.data.message is string
+      && request.resource.data.author.size() <= 60
+      && request.resource.data.message.size() <= 500;
+      allow read, update, delete: if false;
+    }
+  }
+}

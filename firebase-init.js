@@ -2,10 +2,13 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.0/fireba
 import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
 
 const app = initializeApp({
-  apiKey: 'BLGnQtXpzwa2kXIOwD9nJP_7534xbOCy0dKpPM0kj9qs03gMnq9eDkmCCl3XXxNoXW3XjY7ILYEOXm-2pFPwO7M',
-  authDomain: 'invitea.firebaseapp.com',
-  projectId: 'invitea',
-  storageBucket: 'invitea.firebasestorage.app'
+  apiKey: 'AIzaSyAEL_wjUGJuVOnPbJbrWAvMrjMXSTjITLw',
+  authDomain: 'invitea-64288.firebaseapp.com',
+  projectId: 'invitea-64288',
+  storageBucket: 'invitea-64288.firebasestorage.app',
+  messagingSenderId: '198599348885',
+  appId: '1:198599348885:web:fcf95c5edeb77872c9019c',
+  measurementId: 'G-VKWVBZCQGY'
 });
 
 const db = getFirestore(app);
