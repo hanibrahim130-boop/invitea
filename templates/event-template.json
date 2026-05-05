@@ -1,0 +1,55 @@
+{
+  "slug": "client-event-slug",
+  "couple": {
+    "names": "Client One & Client Two",
+    "namesAmpersand": ["Client One", "Client Two"],
+    "initials": "C & C"
+  },
+  "event": {
+    "title": "Wedding Celebration",
+    "kind": "wedding",
+    "startISO": "2026-12-28T17:00:00+03:00",
+    "endISO": "2026-12-28T23:00:00+03:00",
+    "displayDay": "Saturday",
+    "displayMonth": "December",
+    "displayDate": "28",
+    "displayYear": "2026",
+    "rsvpDeadline": "Kindly respond by November 30, 2026",
+    "dressCode": "Black Tie",
+    "dressCodeNote": "Formal Attire"
+  },
+  "venue": {
+    "name": "Venue Name",
+    "city": "City",
+    "country": "Country",
+    "ceremonyTime": "5:00 PM",
+    "ceremonyHall": "Ceremony Hall",
+    "receptionTime": "7:00 PM",
+    "receptionNote": "Dinner & Celebration"
+  },
+  "host": "TOGETHER WITH THEIR FAMILIES",
+  "invitationLine": "Request the pleasure of your company<br/>at their Wedding Celebration",
+  "story": [
+    {
+      "date": "Story Date",
+      "title": "Story Moment",
+      "body": "Short narrative copy for this milestone."
+    }
+  ],
+  "gallery": [],
+  "guestbook": [],
+  "music": {
+    "url": "",
+    "autoplay": false,
+    "volume": 0.35
+  },
+  "theme": {
+    "accent": "#c4956a",
+    "accentLight": "#e8c9a0"
+  },
+  "rsvp": {
+    "provider": "web3forms",
+    "accessKey": "YOUR-WEB3FORMS-ACCESS-KEY",
+    "subjectPrefix": "RSVP — Client One & Client Two"
+  }
+}

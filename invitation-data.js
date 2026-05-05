@@ -13,6 +13,8 @@
   window.__INVITEA_SLUG = slug || null;
   window.__INVITEA_GUEST = guestSlug || null;
 
+  syncRsvpMetadata(slug, guestSlug);
+
   // Always apply per-guest greeting + RSVP prefill, even without a data slug.
   applyGuestPersonalization(guestSlug);
 
@@ -42,16 +44,29 @@
     const nameField = document.getElementById('rsvp-name');
     if (nameField && !nameField.value) nameField.value = name;
     const rsvpForm = document.getElementById('rsvp-form');
-    if (rsvpForm && !rsvpForm.querySelector('input[name="guest_id"]')) {
-      const gid = document.createElement('input');
-      gid.type = 'hidden';
-      gid.name = 'guest_id';
-      gid.value = raw;
-      rsvpForm.appendChild(gid);
-    }
+    if (rsvpForm) upsertHiddenInput(rsvpForm, 'guest_id', raw);
     // Same for guestbook author prefill
     const gbName = document.getElementById('gb-name');
     if (gbName && !gbName.value) gbName.value = name;
+  }
+
+  function syncRsvpMetadata(eventSlug, rawGuestSlug) {
+    const rsvpForm = document.getElementById('rsvp-form');
+    if (!rsvpForm) return;
+    if (eventSlug) upsertHiddenInput(rsvpForm, 'event_slug', eventSlug);
+    if (rawGuestSlug) upsertHiddenInput(rsvpForm, 'guest_id', rawGuestSlug);
+    upsertHiddenInput(rsvpForm, 'invitation_url', window.location.href);
+  }
+
+  function upsertHiddenInput(form, name, value) {
+    let input = form.querySelector(`input[name="${name}"]`);
+    if (!input) {
+      input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      form.appendChild(input);
+    }
+    input.value = value;
   }
 
   function applyData(data) {

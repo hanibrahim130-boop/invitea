@@ -1,0 +1,2 @@
+submitted_at,event_slug,guest_id,invitation_url,response,name,email,guests,notes,phone,provider_status
+2026-12-01T12:00:00+03:00,sarah-ahmed,fatima-al-rashid,https://invitea-fawn.vercel.app/invitation.html?i=sarah-ahmed&g=fatima-al-rashid,accept,Fatima Al Rashid,fatima@example.com,2,Vegetarian meal requested,+966500000000,received

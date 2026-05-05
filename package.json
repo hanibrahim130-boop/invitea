@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "check": "node --check landing.js && node --check invitation.js && node --check invitation-data.js"
+    "guest-links": "node tools/generate-guest-links.js",
+    "check": "node --check landing.js && node --check invitation.js && node --check invitation-data.js && node --check tools/generate-guest-links.js"
   },
   "devDependencies": {
     "vite": "^5.4.10"

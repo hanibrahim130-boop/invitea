@@ -208,6 +208,47 @@
     if (journeySection) connectorObserver.observe(journeySection);
   }
 
+  var intakeForm = document.getElementById('client-intake-form');
+  var intakeStatus = document.getElementById('client-intake-status');
+  var packageLinks = document.querySelectorAll('[data-package]');
+  function setPreferredPackage(packageName) {
+    if (!intakeForm) return;
+    var select = intakeForm.querySelector('[name="package"]');
+    if (select && packageName) select.value = packageName;
+  }
+  packageLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      setPreferredPackage(link.getAttribute('data-package'));
+    });
+  });
+  if (intakeForm) {
+    intakeForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!intakeForm.checkValidity()) {
+        intakeForm.reportValidity();
+        return;
+      }
+      var data = new FormData(intakeForm);
+      var recipient = intakeForm.getAttribute('data-recipient') || 'hello@invitea.app';
+      var subject = 'INVITEA Project Request — ' + (data.get('eventType') || 'New Event');
+      var body = [
+        'Client Name: ' + (data.get('clientName') || ''),
+        'Email: ' + (data.get('email') || ''),
+        'Phone / WhatsApp: ' + (data.get('phone') || ''),
+        'Event Type: ' + (data.get('eventType') || ''),
+        'Event Date: ' + (data.get('eventDate') || ''),
+        'Expected Guests: ' + (data.get('guestCount') || ''),
+        'Preferred Package: ' + (data.get('package') || ''),
+        'Design Direction: ' + (data.get('style') || ''),
+        '',
+        'Event Details:',
+        data.get('details') || ''
+      ].join('\n');
+      window.location.href = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      if (intakeStatus) intakeStatus.textContent = 'Opening your email app with the project brief.';
+    });
+  }
+
   /* ---- Smooth scroll for anchor links ---- */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
