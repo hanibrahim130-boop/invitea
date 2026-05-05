@@ -303,4 +303,22 @@
     });
   });
 
+  /* ---- Auth-aware nav ---- */
+  (function () {
+    var authItem = document.getElementById('nav-auth-item');
+    if (!authItem || !window.__INVITEA_ON_AUTH || !window.__INVITEA_AUTH) return;
+    window.__INVITEA_ON_AUTH(window.__INVITEA_AUTH, function (user) {
+      if (!authItem) return;
+      var link = authItem.querySelector('a');
+      if (!link) return;
+      if (user) {
+        link.href = '/dashboard.html';
+        link.textContent = 'Dashboard';
+      } else {
+        link.href = '/auth.html';
+        link.textContent = 'Login';
+      }
+    });
+  })();
+
 })();

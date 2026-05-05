@@ -24,6 +24,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         invitation: resolve(__dirname, 'invitation.html'),
+        auth: resolve(__dirname, 'auth.html'),
+        dashboard: resolve(__dirname, 'dashboard.html'),
       },
       output: {
         // Hashed asset filenames for long-term caching.

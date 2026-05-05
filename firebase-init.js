@@ -1,5 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
+import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js';
 
 const app = initializeApp({
   apiKey: 'AIzaSyAEL_wjUGJuVOnPbJbrWAvMrjMXSTjITLw',
@@ -12,7 +13,25 @@ const app = initializeApp({
 });
 
 const db = getFirestore(app);
+const auth = getAuth(app);
+
 window.__INVITEA_DB = db;
 window.__INVITEA_COL = collection;
 window.__INVITEA_ADD = addDoc;
 window.__INVITEA_TS = serverTimestamp;
+
+// Auth helpers
+window.__INVITEA_AUTH = auth;
+window.__INVITEA_SIGN_OUT = signOut;
+window.__INVITEA_ON_AUTH = onAuthStateChanged;
+window.__INVITEA_GOOGLE_PROVIDER = new GoogleAuthProvider();
+window.__INVITEA_SIGN_IN_EMAIL = signInWithEmailAndPassword;
+window.__INVITEA_SIGN_UP_EMAIL = createUserWithEmailAndPassword;
+window.__INVITEA_SIGN_IN_POPUP = signInWithPopup;
+
+// User profile helpers
+window.__INVITEA_DOC_REF = doc;
+window.__INVITEA_GET_DOC = getDoc;
+window.__INVITEA_SET_DOC = setDoc;
+
+window.__INVITEA_USER = null;
