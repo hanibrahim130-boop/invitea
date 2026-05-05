@@ -3,23 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>You're Invited | A Royal Evening</title>
+  <meta name="theme-color" content="#030506" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>Sarah &amp; Ahmed — You're Invited</title>
+  <meta name="description" content="You are cordially invited to the wedding celebration of Sarah and Ahmed on December 28, 2026 at The Ritz-Carlton, Riyadh." />
+  <!-- Per-event invitations are private; do not index. -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Open Graph (so the invite preview is beautiful when shared on WhatsApp/iMessage) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="INVITEA" />
+  <meta property="og:title" content="Sarah &amp; Ahmed — A Wedding Invitation" />
+  <meta property="og:description" content="December 28, 2026 · The Ritz-Carlton, Riyadh. Tap to open your invitation." />
+  <meta property="og:image" content="https://invitea.app/invitations/sarah-ahmed-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Outfit:wght@300;400;500;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Outfit:wght@300;400;500;600&display=swap" /></noscript>
   <link rel="stylesheet" href="invitation.css" />
+
+  <!-- Structured data: Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Sarah & Ahmed — Wedding Celebration",
+    "startDate": "2026-12-28T17:00:00+03:00",
+    "endDate": "2026-12-28T23:00:00+03:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "The Ritz-Carlton, Riyadh",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Riyadh",
+        "addressCountry": "SA"
+      }
+    },
+    "description": "Wedding celebration of Sarah and Ahmed.",
+    "organizer": {
+      "@type": "Organization",
+      "name": "Invitea",
+      "url": "https://invitea.app/"
+    }
+  }
+  </script>
 </head>
 <body>
 
   <!-- Phase 1: The Seal -->
   <div class="phase phase-seal active" id="phase-seal">
-    <canvas id="seal-particles"></canvas>
+    <canvas id="seal-particles" aria-hidden="true"></canvas>
     <div class="seal-scene">
-      <p class="seal-prompt">You have received an invitation</p>
-      <div class="seal-container" id="seal-container">
+      <p class="seal-prompt" id="seal-prompt">You have received an invitation</p>
+      <button
+        type="button"
+        class="seal-container"
+        id="seal-container"
+        aria-labelledby="seal-prompt seal-hint"
+      >
         <div class="seal-wax" id="seal-wax">
           <div class="seal-stamp">
-            <svg viewBox="0 0 60 60" fill="none">
+            <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
               <path d="M10 22L26 12L42 22V38H10V22Z" stroke="#1a1a0a" stroke-width="2" fill="none"/>
               <path d="M10 22L26 30L42 22" stroke="#1a1a0a" stroke-width="2" fill="none"/>
               <path d="M44 8V48" stroke="#1a1a0a" stroke-width="3"/>
@@ -27,11 +85,12 @@
               <path d="M24 14L25.5 10L27 14L31 15.5L27 17L25.5 21L24 17L20 15.5Z" fill="#1a1a0a" opacity="0.7"/>
             </svg>
           </div>
-          <div class="seal-shimmer"></div>
+          <div class="seal-shimmer" aria-hidden="true"></div>
         </div>
-        <div class="seal-cracks" id="seal-cracks"></div>
-      </div>
-      <p class="seal-hint">Tap the seal to open</p>
+        <div class="seal-cracks" id="seal-cracks" aria-hidden="true"></div>
+      </button>
+      <p class="seal-hint" id="seal-hint">Tap or press Enter to open</p>
+      <button type="button" class="seal-skip" id="seal-skip">Skip intro</button>
     </div>
   </div>
 
@@ -46,8 +105,8 @@
               <svg viewBox="0 0 200 20" fill="none"><path d="M0 10C30 10 40 2 60 2C80 2 80 18 100 18C120 18 120 2 140 2C160 2 170 10 200 10" stroke="#c4956a" stroke-width="1" opacity="0.5"/></svg>
             </div>
             <p class="card-you">You Are Cordially Invited</p>
-            <h2 class="card-names">Sarah &amp; Ahmed</h2>
-            <p class="card-event">Wedding Celebration</p>
+            <h2 class="card-names" data-bind="couple.names">Sarah &amp; Ahmed</h2>
+            <p class="card-event" data-bind="event.title">Wedding Celebration</p>
             <div class="card-ornament bottom-ornament">
               <svg viewBox="0 0 200 20" fill="none"><path d="M0 10C30 10 40 18 60 18C80 18 80 2 100 2C120 2 120 18 140 18C160 18 170 10 200 10" stroke="#c4956a" stroke-width="1" opacity="0.5"/></svg>
             </div>
@@ -63,13 +122,24 @@
   <div class="phase phase-content" id="phase-content">
     <canvas id="content-particles"></canvas>
 
+    <!-- Audio (real player; src filled by data binder if music.url present) -->
+    <audio id="inv-audio" preload="none" loop aria-hidden="true"></audio>
+
     <!-- Music Toggle -->
-    <button class="music-toggle" id="music-toggle" aria-label="Toggle music">
+    <button class="music-toggle muted" id="music-toggle" aria-label="Toggle music" hidden>
       <svg class="music-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
         <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
       </svg>
       <svg class="music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
         <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+
+    <!-- Share Button (top-right floating) -->
+    <button class="share-btn" id="share-btn" aria-label="Share this invitation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
       </svg>
     </button>
 
@@ -85,17 +155,37 @@
         <div class="welcome-ornament">
           <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" stroke="#c4956a" stroke-width="0.5" opacity="0.3"/><circle cx="50" cy="50" r="30" stroke="#c4956a" stroke-width="0.5" opacity="0.2"/><circle cx="50" cy="50" r="20" stroke="#c4956a" stroke-width="0.5" opacity="0.1"/></svg>
         </div>
-        <p class="inv-label reveal-inv">TOGETHER WITH THEIR FAMILIES</p>
-        <h1 class="inv-names reveal-inv">Sarah <span class="inv-amp">&amp;</span> Ahmed</h1>
-        <p class="inv-invite-text reveal-inv">Request the pleasure of your company<br/>at their Wedding Celebration</p>
+        <p class="inv-personal-greeting reveal-inv" id="inv-personal-greeting" hidden></p>
+        <p class="inv-label reveal-inv" data-bind="host">TOGETHER WITH THEIR FAMILIES</p>
+        <h1 class="inv-names reveal-inv" data-bind-html="couple.namesHtml">Sarah <span class="inv-amp">&amp;</span> Ahmed</h1>
+        <p class="inv-invite-text reveal-inv" data-bind-html="invitationLine">Request the pleasure of your company<br/>at their Wedding Celebration</p>
         <div class="inv-date-badge reveal-inv">
-          <span class="inv-day">Saturday</span>
+          <span class="inv-day" data-bind="event.displayDay">Saturday</span>
           <div class="inv-date-main">
-            <span class="inv-month">December</span>
-            <span class="inv-date-num">28</span>
-            <span class="inv-year">2026</span>
+            <span class="inv-month" data-bind="event.displayMonth">December</span>
+            <span class="inv-date-num" data-bind="event.displayDate">28</span>
+            <span class="inv-year" data-bind="event.displayYear">2026</span>
           </div>
         </div>
+
+        <!-- Add to Calendar -->
+        <div class="inv-actions reveal-inv">
+          <div class="cal-dropdown" id="cal-dropdown">
+            <button type="button" class="cal-btn" id="cal-btn" aria-haspopup="true" aria-expanded="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+              </svg>
+              <span>Add to Calendar</span>
+              <svg class="cal-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="14" height="14" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="cal-menu" role="menu" hidden>
+              <a href="#" data-cal="apple" role="menuitem">Apple Calendar</a>
+              <a href="#" data-cal="google" role="menuitem" target="_blank" rel="noopener">Google Calendar</a>
+              <a href="#" data-cal="outlook" role="menuitem" target="_blank" rel="noopener">Outlook</a>
+            </div>
+          </div>
+        </div>
+
         <div class="scroll-down-hint reveal-inv">
           <div class="scroll-arrow"></div>
           <span>Scroll to continue</span>
@@ -107,7 +197,7 @@
     <section class="inv-section inv-story">
       <div class="inv-container">
         <h2 class="inv-section-title reveal-inv">Our Story</h2>
-        <div class="story-timeline">
+        <div class="story-timeline" data-list="story">
           <div class="timeline-line"></div>
           <div class="timeline-item reveal-inv">
             <div class="timeline-dot"></div>
@@ -147,32 +237,32 @@
               <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#c4956a" stroke-width="1.5"/><path d="M24 12v12l8 4" stroke="#c4956a" stroke-width="2"/></svg>
             </div>
             <h3>Ceremony</h3>
-            <p class="detail-time">5:00 PM</p>
-            <p class="detail-info">The Grand Hall</p>
+            <p class="detail-time" data-bind="venue.ceremonyTime">5:00 PM</p>
+            <p class="detail-info" data-bind="venue.ceremonyHall">The Grand Hall</p>
           </div>
           <div class="detail-card reveal-inv">
             <div class="detail-icon">
               <svg viewBox="0 0 48 48" fill="none"><path d="M12 20C12 13.373 17.373 8 24 8s12 5.373 12 12c0 10-12 22-12 22S12 30 12 20z" stroke="#c4956a" stroke-width="1.5"/><circle cx="24" cy="20" r="4" stroke="#c4956a" stroke-width="1.5"/></svg>
             </div>
             <h3>Venue</h3>
-            <p class="detail-time">The Ritz-Carlton</p>
-            <p class="detail-info">Riyadh, Saudi Arabia</p>
+            <p class="detail-time" data-bind="venue.name">The Ritz-Carlton</p>
+            <p class="detail-info" data-bind="venue.cityCountry">Riyadh, Saudi Arabia</p>
           </div>
           <div class="detail-card reveal-inv">
             <div class="detail-icon">
               <svg viewBox="0 0 48 48" fill="none"><path d="M8 16l16-8 16 8v16l-16 8-16-8V16z" stroke="#c4956a" stroke-width="1.5"/><path d="M8 16l16 8 16-8M24 24v16" stroke="#c4956a" stroke-width="1.5"/></svg>
             </div>
             <h3>Reception</h3>
-            <p class="detail-time">7:00 PM</p>
-            <p class="detail-info">Dinner & Celebration</p>
+            <p class="detail-time" data-bind="venue.receptionTime">7:00 PM</p>
+            <p class="detail-info" data-bind="venue.receptionNote">Dinner & Celebration</p>
           </div>
           <div class="detail-card reveal-inv">
             <div class="detail-icon">
               <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#c4956a" stroke-width="1.5"/><path d="M8 16h32" stroke="#c4956a" stroke-width="1.5"/><path d="M16 8V4M32 8V4" stroke="#c4956a" stroke-width="2"/></svg>
             </div>
             <h3>Dress Code</h3>
-            <p class="detail-time">Black Tie</p>
-            <p class="detail-info">Formal Attire</p>
+            <p class="detail-time" data-bind="event.dressCode">Black Tie</p>
+            <p class="detail-info" data-bind="event.dressCodeNote">Formal Attire</p>
           </div>
         </div>
       </div>
@@ -224,9 +314,13 @@
     <section class="inv-section inv-rsvp">
       <div class="inv-container">
         <h2 class="inv-section-title reveal-inv">Will You Join Us?</h2>
-        <p class="inv-rsvp-subtitle reveal-inv">Kindly respond by November 30, 2026</p>
+        <p class="inv-rsvp-subtitle reveal-inv" data-bind="event.rsvpDeadline">Kindly respond by November 30, 2026</p>
         <div class="rsvp-form-container reveal-inv">
-          <form class="rsvp-form" id="rsvp-form">
+          <form class="rsvp-form" id="rsvp-form" novalidate>
+            <!-- Honeypot — bots fill any visible/named input. Real users won't touch this. -->
+            <input type="text" name="botcheck" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true" />
+            <input type="hidden" name="response" id="rsvp-response-input" value="accept" />
+            <input type="hidden" name="_subject" id="rsvp-subject" value="New RSVP" />
             <div class="rsvp-response-toggle">
               <button type="button" class="rsvp-toggle-btn active" data-value="accept">
                 <span class="toggle-icon">
@@ -243,13 +337,16 @@
             </div>
             <div class="rsvp-fields">
               <div class="rsvp-field">
-                <input type="text" placeholder="Your Full Name" required />
+                <label for="rsvp-name" class="visually-hidden">Your Full Name</label>
+                <input id="rsvp-name" name="name" type="text" placeholder="Your Full Name" autocomplete="name" required />
               </div>
               <div class="rsvp-field">
-                <input type="email" placeholder="Email Address" required />
+                <label for="rsvp-email" class="visually-hidden">Email Address</label>
+                <input id="rsvp-email" name="email" type="email" placeholder="Email Address" autocomplete="email" required />
               </div>
               <div class="rsvp-field">
-                <select>
+                <label for="rsvp-guests" class="visually-hidden">Number of Guests</label>
+                <select id="rsvp-guests" name="guests">
                   <option value="" disabled selected>Number of Guests</option>
                   <option value="1">1 Guest</option>
                   <option value="2">2 Guests</option>
@@ -258,7 +355,8 @@
                 </select>
               </div>
               <div class="rsvp-field full-width">
-                <textarea placeholder="Dietary preferences or special requests" rows="3"></textarea>
+                <label for="rsvp-notes" class="visually-hidden">Dietary preferences or special requests</label>
+                <textarea id="rsvp-notes" name="notes" placeholder="Dietary preferences or special requests" rows="3"></textarea>
               </div>
             </div>
             <button type="submit" class="rsvp-submit-btn">
@@ -282,7 +380,7 @@
       <div class="inv-container">
         <h2 class="inv-section-title reveal-inv">Leave Your Wishes</h2>
         <div class="guestbook-container reveal-inv">
-          <div class="guestbook-messages" id="guestbook-messages">
+          <div class="guestbook-messages" id="guestbook-messages" data-list="guestbook">
             <div class="guestbook-msg">
               <span class="gb-author">Fatima Al-Rashid</span>
               <p>"May your love story be as beautiful as the stars over AlUla. Congratulations!"</p>
@@ -296,9 +394,12 @@
               <p>"So happy for both of you! Can't wait to celebrate this beautiful union."</p>
             </div>
           </div>
-          <form class="guestbook-form" id="guestbook-form">
-            <input type="text" placeholder="Your Name" required />
-            <textarea placeholder="Write your wishes..." rows="3" required></textarea>
+          <form class="guestbook-form" id="guestbook-form" novalidate>
+            <input type="text" name="botcheck" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true" />
+            <label for="gb-name" class="visually-hidden">Your Name</label>
+            <input id="gb-name" name="name" type="text" placeholder="Your Name" autocomplete="name" required maxlength="60" />
+            <label for="gb-msg" class="visually-hidden">Your Wishes</label>
+            <textarea id="gb-msg" name="message" placeholder="Write your wishes..." rows="3" required maxlength="500"></textarea>
             <button type="submit">Send Wishes</button>
           </form>
         </div>
@@ -309,8 +410,8 @@
     <section class="inv-section inv-footer-section">
       <div class="inv-container">
         <div class="inv-footer-content reveal-inv">
-          <p class="inv-footer-names">Sarah & Ahmed</p>
-          <p class="inv-footer-date">December 28, 2026</p>
+          <p class="inv-footer-names" data-bind="couple.names">Sarah & Ahmed</p>
+          <p class="inv-footer-date" data-bind="event.fullDate">December 28, 2026</p>
           <div class="inv-footer-divider"></div>
           <p class="inv-footer-powered">Crafted with love by <a href="index.html">Invitea</a></p>
         </div>
@@ -318,6 +419,8 @@
     </section>
   </div>
 
-  <script src="invitation.js"></script>
+  <script type="module" src="/invitation-data.js"></script>
+  <script type="module" src="/invitation.js"></script>
+  <script type="module" src="/engagement.js"></script>
 </body>
 </html>

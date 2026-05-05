@@ -1,0 +1,69 @@
+{
+  "slug": "sarah-ahmed",
+  "couple": {
+    "names": "Sarah & Ahmed",
+    "namesAmpersand": ["Sarah", "Ahmed"],
+    "initials": "S & A"
+  },
+  "event": {
+    "title": "Wedding Celebration",
+    "kind": "wedding",
+    "startISO": "2026-12-28T17:00:00+03:00",
+    "endISO": "2026-12-28T23:00:00+03:00",
+    "displayDay": "Saturday",
+    "displayMonth": "December",
+    "displayDate": "28",
+    "displayYear": "2026",
+    "rsvpDeadline": "Kindly respond by November 30, 2026",
+    "dressCode": "Black Tie",
+    "dressCodeNote": "Formal Attire"
+  },
+  "venue": {
+    "name": "The Ritz-Carlton",
+    "city": "Riyadh",
+    "country": "Saudi Arabia",
+    "ceremonyTime": "5:00 PM",
+    "ceremonyHall": "The Grand Hall",
+    "receptionTime": "7:00 PM",
+    "receptionNote": "Dinner & Celebration"
+  },
+  "host": "TOGETHER WITH THEIR FAMILIES",
+  "invitationLine": "Request the pleasure of your company<br/>at their Wedding Celebration",
+  "story": [
+    {
+      "date": "March 2020",
+      "title": "First Meeting",
+      "body": "A chance encounter at an art exhibition in Riyadh brought two souls together. What started as a conversation about calligraphy became the beginning of forever."
+    },
+    {
+      "date": "November 2021",
+      "title": "The Journey",
+      "body": "Through shared dreams, late-night conversations, and adventures across the Kingdom, their bond grew deeper with each passing day."
+    },
+    {
+      "date": "June 2026",
+      "title": "The Proposal",
+      "body": "Under the stars of AlUla, with the ancient rocks as witness, Ahmed asked the question that would change their lives forever. She said yes."
+    }
+  ],
+  "gallery": [],
+  "guestbook": [
+    { "author": "Fatima Al-Rashid", "message": "May your love story be as beautiful as the stars over AlUla. Congratulations!" },
+    { "author": "Omar Hassan", "message": "Two amazing people finding each other. Wishing you a lifetime of joy and laughter!" },
+    { "author": "Lina Khalid", "message": "So happy for both of you! Can't wait to celebrate this beautiful union." }
+  ],
+  "music": {
+    "url": "https://cdn.pixabay.com/audio/2022/05/27/audio_8f8b1d9e89.mp3",
+    "autoplay": false,
+    "volume": 0.35
+  },
+  "theme": {
+    "accent": "#c4956a",
+    "accentLight": "#e8c9a0"
+  },
+  "rsvp": {
+    "provider": "web3forms",
+    "accessKey": "YOUR-WEB3FORMS-ACCESS-KEY",
+    "subjectPrefix": "RSVP — Sarah & Ahmed"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "invitea",
+  "version": "0.1.0",
+  "private": true,
+  "description": "INVITEA — premium digital invitation experiences. Multi-page Vite project (landing + invitation).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "check": "node --check landing.js && node --check invitation.js && node --check invitation-data.js"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

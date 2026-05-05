@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# Per-event invitations are private and noindexed at the page level.
+Disallow: /invitations/
+
+Sitemap: https://invitea.app/sitemap.xml

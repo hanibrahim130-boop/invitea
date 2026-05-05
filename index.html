@@ -3,14 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#030506" />
+  <meta name="color-scheme" content="dark" />
+
   <title>INVITEA | Elegant Digital Invitations</title>
   <meta name="description" content="INVITEA — Craft immersive, cinematic invitation experiences that transcend the ordinary. Where every event becomes a masterpiece." />
+  <meta name="keywords" content="digital invitations, wedding invitations, event invitations, premium invitations, RSVP, online invitation, luxury invitations" />
+  <meta name="author" content="Invitea" />
+  <link rel="canonical" href="https://invitea.app/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="INVITEA" />
+  <meta property="og:title" content="INVITEA | Elegant Digital Invitations" />
+  <meta property="og:description" content="Craft immersive, cinematic invitation experiences that transcend the ordinary. Where every event becomes a masterpiece." />
+  <meta property="og:url" content="https://invitea.app/" />
+  <meta property="og:image" content="https://invitea.app/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="INVITEA — Elegant digital invitations on a dark cinematic background" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="INVITEA | Elegant Digital Invitations" />
+  <meta name="twitter:description" content="Craft immersive, cinematic invitation experiences. Where every event becomes a masterpiece." />
+  <meta name="twitter:image" content="https://invitea.app/og-image.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Outfit:wght@300;400;500;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Outfit:wght@300;400;500;600&display=swap" /></noscript>
   <link rel="stylesheet" href="landing.css" />
+
+  <!-- Structured data: Organization + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://invitea.app/#organization",
+        "name": "Invitea",
+        "url": "https://invitea.app/",
+        "logo": "https://invitea.app/favicon.svg",
+        "description": "Premium digital invitation experiences for weddings, celebrations, and corporate events.",
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://invitea.app/#website",
+        "url": "https://invitea.app/",
+        "name": "INVITEA",
+        "publisher": { "@id": "https://invitea.app/#organization" },
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
   <!-- Preloader -->
   <div class="preloader" id="preloader">
     <div class="preloader-inner">
@@ -94,6 +154,7 @@
     </div>
   </nav>
 
+  <main id="main">
   <!-- Hero -->
   <section class="hero" id="home">
     <div class="hero-bg">
@@ -476,6 +537,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-glow"></div>
@@ -533,6 +596,6 @@
     </div>
   </footer>
 
-  <script src="landing.js"></script>
+  <script type="module" src="/landing.js"></script>
 </body>
 </html>

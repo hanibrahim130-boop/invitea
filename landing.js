@@ -6,38 +6,64 @@
   'use strict';
 
   /* ---- Preloader ---- */
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      var pre = document.getElementById('preloader');
-      if (pre) pre.classList.add('done');
-    }, 2600);
+  var pre = document.getElementById('preloader');
+  function dismissPreloader() {
+    if (pre) pre.classList.add('done');
+  }
+  // Dismiss when fonts are ready OR after a hard ceiling, whichever first.
+  // Prevents long FOIT and removes the previous fixed 2.6s theatrical hold.
+  var minHold = 800; // small artistic minimum
+  var maxHold = 3000;
+  var startedAt = performance.now();
+  var fontsReady = (document.fonts && document.fonts.ready) || Promise.resolve();
+  Promise.race([
+    fontsReady,
+    new Promise(function (resolve) { setTimeout(resolve, maxHold); })
+  ]).then(function () {
+    var elapsed = performance.now() - startedAt;
+    var wait = Math.max(0, minHold - elapsed);
+    setTimeout(dismissPreloader, wait);
   });
 
   /* ---- Cursor glow (desktop only) ---- */
   var glow = document.getElementById('cursor-glow');
-  if (glow && window.matchMedia('(pointer: fine)').matches) {
+  var glowRaf = null;
+  if (glow && window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var gx = 0, gy = 0, cx = 0, cy = 0;
     document.addEventListener('mousemove', function (e) {
       gx = e.clientX;
       gy = e.clientY;
-    });
-    (function glowLoop() {
+    }, { passive: true });
+    function glowLoop() {
       cx += (gx - cx) * 0.08;
       cy += (gy - cy) * 0.08;
       glow.style.left = cx + 'px';
       glow.style.top = cy + 'px';
-      requestAnimationFrame(glowLoop);
-    })();
+      glowRaf = requestAnimationFrame(glowLoop);
+    }
+    glowLoop();
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden && glowRaf) {
+        cancelAnimationFrame(glowRaf);
+        glowRaf = null;
+      } else if (!document.hidden && !glowRaf) {
+        glowLoop();
+      }
+    });
   } else if (glow) {
     glow.style.display = 'none';
   }
 
   /* ---- Ambient canvas (floating particles) ---- */
   var canvas = document.getElementById('ambient-canvas');
-  if (canvas) {
+  var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isCoarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  if (canvas && !prefersReduce) {
     var ctx = canvas.getContext('2d');
     var particles = [];
-    var particleCount = 40;
+    // Lower count on touch / small screens to save battery + frame budget.
+    var particleCount = isCoarse || window.innerWidth < 768 ? 18 : 40;
+    var pRaf = null;
 
     function resize() {
       canvas.width = window.innerWidth;
@@ -79,21 +105,39 @@
         ctx.fill();
         ctx.restore();
       });
-      requestAnimationFrame(animateParticles);
+      pRaf = requestAnimationFrame(animateParticles);
     }
     animateParticles();
+
+    // Pause when tab not visible — saves CPU/battery.
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden && pRaf) {
+        cancelAnimationFrame(pRaf);
+        pRaf = null;
+      } else if (!document.hidden && !pRaf) {
+        animateParticles();
+      }
+    });
+  } else if (canvas) {
+    canvas.style.display = 'none';
   }
 
-  /* ---- Navbar scroll state ---- */
+  /* ---- Navbar scroll state (rAF-throttled, idempotent) ---- */
   var navbar = document.getElementById('navbar');
+  var navTicking = false;
+  var navScrolled = false;
   window.addEventListener('scroll', function () {
-    if (!navbar) return;
-    if (window.scrollY > 60) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+    if (!navbar || navTicking) return;
+    navTicking = true;
+    requestAnimationFrame(function () {
+      var shouldScroll = window.scrollY > 60;
+      if (shouldScroll !== navScrolled) {
+        navbar.classList.toggle('scrolled', shouldScroll);
+        navScrolled = shouldScroll;
+      }
+      navTicking = false;
+    });
+  }, { passive: true });
 
   /* ---- Mobile menu ---- */
   var menuBtn = document.getElementById('mobile-menu-btn');
