@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're Invited | A Royal Evening</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="invitation.css" />
+</head>
+<body>
+
+  <!-- Phase 1: The Seal -->
+  <div class="phase phase-seal active" id="phase-seal">
+    <canvas id="seal-particles"></canvas>
+    <div class="seal-scene">
+      <p class="seal-prompt">You have received an invitation</p>
+      <div class="seal-container" id="seal-container">
+        <div class="seal-wax" id="seal-wax">
+          <div class="seal-stamp">
+            <svg viewBox="0 0 60 60" fill="none">
+              <path d="M10 22L26 12L42 22V38H10V22Z" stroke="#1a1a0a" stroke-width="2" fill="none"/>
+              <path d="M10 22L26 30L42 22" stroke="#1a1a0a" stroke-width="2" fill="none"/>
+              <path d="M44 8V48" stroke="#1a1a0a" stroke-width="3"/>
+              <path d="M38 8H50M38 48H50" stroke="#1a1a0a" stroke-width="2"/>
+              <path d="M24 14L25.5 10L27 14L31 15.5L27 17L25.5 21L24 17L20 15.5Z" fill="#1a1a0a" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="seal-shimmer"></div>
+        </div>
+        <div class="seal-cracks" id="seal-cracks"></div>
+      </div>
+      <p class="seal-hint">Tap the seal to open</p>
+    </div>
+  </div>
+
+  <!-- Phase 2: The Envelope -->
+  <div class="phase phase-envelope" id="phase-envelope">
+    <div class="envelope-scene">
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-card" id="envelope-card">
+          <div class="card-inner">
+            <div class="card-ornament top-ornament">
+              <svg viewBox="0 0 200 20" fill="none"><path d="M0 10C30 10 40 2 60 2C80 2 80 18 100 18C120 18 120 2 140 2C160 2 170 10 200 10" stroke="#c4956a" stroke-width="1" opacity="0.5"/></svg>
+            </div>
+            <p class="card-you">You Are Cordially Invited</p>
+            <h2 class="card-names">Sarah &amp; Ahmed</h2>
+            <p class="card-event">Wedding Celebration</p>
+            <div class="card-ornament bottom-ornament">
+              <svg viewBox="0 0 200 20" fill="none"><path d="M0 10C30 10 40 18 60 18C80 18 80 2 100 2C120 2 120 18 140 18C160 18 170 10 200 10" stroke="#c4956a" stroke-width="1" opacity="0.5"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="envelope-flap" id="envelope-flap"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: The Invitation Experience -->
+  <div class="phase phase-content" id="phase-content">
+    <canvas id="content-particles"></canvas>
+
+    <!-- Music Toggle -->
+    <button class="music-toggle" id="music-toggle" aria-label="Toggle music">
+      <svg class="music-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      </svg>
+      <svg class="music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+
+    <!-- Back to Landing -->
+    <a href="index.html" class="back-link" title="Back to Invitea">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
+
+    <!-- Section: Welcome -->
+    <section class="inv-section inv-welcome">
+      <div class="inv-welcome-bg"></div>
+      <div class="inv-container">
+        <div class="welcome-ornament">
+          <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" stroke="#c4956a" stroke-width="0.5" opacity="0.3"/><circle cx="50" cy="50" r="30" stroke="#c4956a" stroke-width="0.5" opacity="0.2"/><circle cx="50" cy="50" r="20" stroke="#c4956a" stroke-width="0.5" opacity="0.1"/></svg>
+        </div>
+        <p class="inv-label reveal-inv">TOGETHER WITH THEIR FAMILIES</p>
+        <h1 class="inv-names reveal-inv">Sarah <span class="inv-amp">&amp;</span> Ahmed</h1>
+        <p class="inv-invite-text reveal-inv">Request the pleasure of your company<br/>at their Wedding Celebration</p>
+        <div class="inv-date-badge reveal-inv">
+          <span class="inv-day">Saturday</span>
+          <div class="inv-date-main">
+            <span class="inv-month">December</span>
+            <span class="inv-date-num">28</span>
+            <span class="inv-year">2026</span>
+          </div>
+        </div>
+        <div class="scroll-down-hint reveal-inv">
+          <div class="scroll-arrow"></div>
+          <span>Scroll to continue</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Our Story -->
+    <section class="inv-section inv-story">
+      <div class="inv-container">
+        <h2 class="inv-section-title reveal-inv">Our Story</h2>
+        <div class="story-timeline">
+          <div class="timeline-line"></div>
+          <div class="timeline-item reveal-inv">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">March 2020</span>
+              <h3>First Meeting</h3>
+              <p>A chance encounter at an art exhibition in Riyadh brought two souls together. What started as a conversation about calligraphy became the beginning of forever.</p>
+            </div>
+          </div>
+          <div class="timeline-item right reveal-inv">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">November 2021</span>
+              <h3>The Journey</h3>
+              <p>Through shared dreams, late-night conversations, and adventures across the Kingdom, their bond grew deeper with each passing day.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal-inv">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">June 2026</span>
+              <h3>The Proposal</h3>
+              <p>Under the stars of AlUla, with the ancient rocks as witness, Ahmed asked the question that would change their lives forever. She said yes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Event Details -->
+    <section class="inv-section inv-details">
+      <div class="inv-container">
+        <h2 class="inv-section-title reveal-inv">Celebration Details</h2>
+        <div class="details-grid">
+          <div class="detail-card reveal-inv">
+            <div class="detail-icon">
+              <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#c4956a" stroke-width="1.5"/><path d="M24 12v12l8 4" stroke="#c4956a" stroke-width="2"/></svg>
+            </div>
+            <h3>Ceremony</h3>
+            <p class="detail-time">5:00 PM</p>
+            <p class="detail-info">The Grand Hall</p>
+          </div>
+          <div class="detail-card reveal-inv">
+            <div class="detail-icon">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M12 20C12 13.373 17.373 8 24 8s12 5.373 12 12c0 10-12 22-12 22S12 30 12 20z" stroke="#c4956a" stroke-width="1.5"/><circle cx="24" cy="20" r="4" stroke="#c4956a" stroke-width="1.5"/></svg>
+            </div>
+            <h3>Venue</h3>
+            <p class="detail-time">The Ritz-Carlton</p>
+            <p class="detail-info">Riyadh, Saudi Arabia</p>
+          </div>
+          <div class="detail-card reveal-inv">
+            <div class="detail-icon">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M8 16l16-8 16 8v16l-16 8-16-8V16z" stroke="#c4956a" stroke-width="1.5"/><path d="M8 16l16 8 16-8M24 24v16" stroke="#c4956a" stroke-width="1.5"/></svg>
+            </div>
+            <h3>Reception</h3>
+            <p class="detail-time">7:00 PM</p>
+            <p class="detail-info">Dinner & Celebration</p>
+          </div>
+          <div class="detail-card reveal-inv">
+            <div class="detail-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#c4956a" stroke-width="1.5"/><path d="M8 16h32" stroke="#c4956a" stroke-width="1.5"/><path d="M16 8V4M32 8V4" stroke="#c4956a" stroke-width="2"/></svg>
+            </div>
+            <h3>Dress Code</h3>
+            <p class="detail-time">Black Tie</p>
+            <p class="detail-info">Formal Attire</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Countdown -->
+    <section class="inv-section inv-countdown">
+      <div class="inv-container">
+        <h2 class="inv-section-title reveal-inv">Counting Down To Forever</h2>
+        <div class="countdown-grid reveal-inv" id="countdown">
+          <div class="countdown-item">
+            <span class="countdown-num" id="cd-days">000</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <span class="countdown-num" id="cd-hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <span class="countdown-num" id="cd-mins">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <span class="countdown-num" id="cd-secs">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Gallery -->
+    <section class="inv-section inv-gallery">
+      <div class="inv-container">
+        <h2 class="inv-section-title reveal-inv">Moments Together</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item gi-1 reveal-inv"></div>
+          <div class="gallery-item gi-2 reveal-inv"></div>
+          <div class="gallery-item gi-3 reveal-inv"></div>
+          <div class="gallery-item gi-4 reveal-inv"></div>
+          <div class="gallery-item gi-5 reveal-inv"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: RSVP -->
+    <section class="inv-section inv-rsvp">
+      <div class="inv-container">
+        <h2 class="inv-section-title reveal-inv">Will You Join Us?</h2>
+        <p class="inv-rsvp-subtitle reveal-inv">Kindly respond by November 30, 2026</p>
+        <div class="rsvp-form-container reveal-inv">
+          <form class="rsvp-form" id="rsvp-form">
+            <div class="rsvp-response-toggle">
+              <button type="button" class="rsvp-toggle-btn active" data-value="accept">
+                <span class="toggle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                Joyfully Accept
+              </button>
+              <button type="button" class="rsvp-toggle-btn" data-value="decline">
+                <span class="toggle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </span>
+                Regretfully Decline
+              </button>
+            </div>
+            <div class="rsvp-fields">
+              <div class="rsvp-field">
+                <input type="text" placeholder="Your Full Name" required />
+              </div>
+              <div class="rsvp-field">
+                <input type="email" placeholder="Email Address" required />
+              </div>
+              <div class="rsvp-field">
+                <select>
+                  <option value="" disabled selected>Number of Guests</option>
+                  <option value="1">1 Guest</option>
+                  <option value="2">2 Guests</option>
+                  <option value="3">3 Guests</option>
+                  <option value="4">4 Guests</option>
+                </select>
+              </div>
+              <div class="rsvp-field full-width">
+                <textarea placeholder="Dietary preferences or special requests" rows="3"></textarea>
+              </div>
+            </div>
+            <button type="submit" class="rsvp-submit-btn">
+              <span>Confirm Response</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+          <div class="rsvp-success" id="rsvp-success">
+            <div class="success-icon">
+              <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="25" stroke="#c4956a" stroke-width="2"/><path d="M18 30l8 8 16-16" stroke="#c4956a" stroke-width="3"/></svg>
+            </div>
+            <h3>Thank You!</h3>
+            <p>Your response has been recorded. We look forward to celebrating with you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Guest Book -->
+    <section class="inv-section inv-guestbook">
+      <div class="inv-container">
+        <h2 class="inv-section-title reveal-inv">Leave Your Wishes</h2>
+        <div class="guestbook-container reveal-inv">
+          <div class="guestbook-messages" id="guestbook-messages">
+            <div class="guestbook-msg">
+              <span class="gb-author">Fatima Al-Rashid</span>
+              <p>"May your love story be as beautiful as the stars over AlUla. Congratulations!"</p>
+            </div>
+            <div class="guestbook-msg">
+              <span class="gb-author">Omar Hassan</span>
+              <p>"Two amazing people finding each other. Wishing you a lifetime of joy and laughter!"</p>
+            </div>
+            <div class="guestbook-msg">
+              <span class="gb-author">Lina Khalid</span>
+              <p>"So happy for both of you! Can't wait to celebrate this beautiful union."</p>
+            </div>
+          </div>
+          <form class="guestbook-form" id="guestbook-form">
+            <input type="text" placeholder="Your Name" required />
+            <textarea placeholder="Write your wishes..." rows="3" required></textarea>
+            <button type="submit">Send Wishes</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="inv-section inv-footer-section">
+      <div class="inv-container">
+        <div class="inv-footer-content reveal-inv">
+          <p class="inv-footer-names">Sarah & Ahmed</p>
+          <p class="inv-footer-date">December 28, 2026</p>
+          <div class="inv-footer-divider"></div>
+          <p class="inv-footer-powered">Crafted with love by <a href="index.html">Invitea</a></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="invitation.js"></script>
+</body>
+</html>

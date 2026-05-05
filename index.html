@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INVITEA | Elegant Digital Invitations</title>
+  <meta name="description" content="INVITEA — Craft immersive, cinematic invitation experiences that transcend the ordinary. Where every event becomes a masterpiece." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-ring">
+        <svg viewBox="0 0 200 200" class="preloader-ring-svg">
+          <circle cx="100" cy="100" r="90" stroke="rgba(196,149,106,0.1)" stroke-width="0.5" fill="none"/>
+          <circle cx="100" cy="100" r="90" stroke="url(#preloaderGrad)" stroke-width="1" fill="none" stroke-dasharray="565" stroke-dashoffset="565" class="ring-trace">
+            <animate attributeName="stroke-dashoffset" from="565" to="0" dur="2s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+          </circle>
+          <defs>
+            <linearGradient id="preloaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#c4956a"/>
+              <stop offset="100%" stop-color="#e8c9a0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="preloader-brand">
+        <div class="preloader-logo-mark">
+          <svg viewBox="0 0 60 60" fill="none" class="preloader-icon">
+            <path d="M8 22L26 10L44 22V42H8V22Z" stroke="#c4956a" stroke-width="1" fill="none" opacity="0">
+              <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.5s" fill="freeze"/>
+            </path>
+            <path d="M8 22L26 34L44 22" stroke="#c4956a" stroke-width="1" fill="none" opacity="0">
+              <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.8s" fill="freeze"/>
+            </path>
+            <path d="M46 6V54" stroke="#c4956a" stroke-width="2.5" fill="none" stroke-dasharray="0 48" stroke-dashoffset="0">
+              <animate attributeName="stroke-dasharray" from="0 48" to="48 0" dur="0.8s" begin="0.3s" fill="freeze"/>
+            </path>
+            <path d="M40 6H52M40 54H52" stroke="#c4956a" stroke-width="1.5" fill="none" opacity="0">
+              <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="1s" fill="freeze"/>
+            </path>
+            <path d="M22 14L23.5 9L25 14L30 15.5L25 17L23.5 22L22 17L17 15.5Z" fill="#c4956a" opacity="0">
+              <animate attributeName="opacity" from="0" to="0.8" dur="0.3s" begin="1.3s" fill="freeze"/>
+              <animateTransform attributeName="transform" type="rotate" from="0 23.5 15.5" to="360 23.5 15.5" dur="8s" begin="1.3s" repeatCount="indefinite"/>
+            </path>
+          </svg>
+        </div>
+        <h1 class="preloader-text">INVITEA</h1>
+        <p class="preloader-subtext">Elegant Digital Invitations</p>
+        <div class="preloader-line">
+          <div class="preloader-line-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo" aria-label="INVITEA Home">
+        <svg class="logo-icon" viewBox="0 0 36 36" fill="none">
+          <path d="M3 12L13 6L23 12V22H3V12Z" stroke="currentColor" stroke-width="1"/>
+          <path d="M3 12L13 18L23 12" stroke="currentColor" stroke-width="1"/>
+          <path d="M25 3V29" stroke="currentColor" stroke-width="2"/>
+          <path d="M21 3H29M21 29H29" stroke="currentColor" stroke-width="1"/>
+          <path d="M15 8L16 5.5L17 8L19.5 9L17 10L16 12.5L15 10L12.5 9Z" fill="currentColor" opacity="0.7"/>
+        </svg>
+        <span class="logo-text">INVITEA</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#journey">The Journey</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#demo">Experience</a></li>
+      </ul>
+      <a href="invitation.html" class="btn-cta nav-cta" aria-label="Try a Demo">
+        <span>Try a Demo</span>
+        <div class="btn-shimmer"></div>
+      </a>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-noise"></div>
+      <div class="hero-vignette"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal-up">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">A NEW ERA OF INVITATIONS</span>
+        <span class="eyebrow-line"></span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line reveal-up" style="--delay:0.1s">Your Event Deserves</span>
+        <span class="title-line reveal-up" style="--delay:0.2s">More Than</span>
+        <span class="title-line title-accent reveal-up" style="--delay:0.3s"><em>A Simple Card</em></span>
+      </h1>
+      <p class="hero-subtitle reveal-up" style="--delay:0.4s">Create immersive, cinematic invitation experiences that your guests will never forget. Each invitation is a journey &mdash; not just a message.</p>
+      <div class="hero-actions reveal-up" style="--delay:0.5s">
+        <a href="invitation.html" class="btn-primary">
+          <span class="btn-label">Experience a Demo</span>
+          <span class="btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+          <div class="btn-glow"></div>
+        </a>
+        <a href="#journey" class="btn-secondary">
+          <span>Discover the Magic</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-metrics reveal-up" style="--delay:0.6s">
+      <div class="metric">
+        <span class="metric-value" data-count="50">0</span><span class="metric-suffix">K+</span>
+        <span class="metric-label">Invitations Sent</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric">
+        <span class="metric-value" data-count="98">0</span><span class="metric-suffix">%</span>
+        <span class="metric-label">Guest Engagement</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric">
+        <span class="metric-value" data-count="200">0</span><span class="metric-suffix">+</span>
+        <span class="metric-label">Premium Templates</span>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <div class="scroll-cue-line"></div>
+      <span class="scroll-cue-text">Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- The Journey (How it works) -->
+  <section class="journey" id="journey">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal-up">THE PROCESS</span>
+        <h2 class="section-title reveal-up">Three Steps to<br/><em>Unforgettable</em></h2>
+        <div class="section-line reveal-up"></div>
+      </div>
+      <div class="journey-track">
+        <div class="journey-connector">
+          <div class="connector-fill" id="connector-fill"></div>
+        </div>
+        <div class="journey-step reveal-up" style="--delay:0s">
+          <div class="step-marker">
+            <div class="marker-ring"></div>
+            <span class="marker-num">01</span>
+          </div>
+          <div class="step-glass-card">
+            <div class="glass-card-inner">
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                  <path d="M16 24l5 5 11-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>Choose Your Template</h3>
+              <p>Browse our collection of premium, handcrafted invitation templates. From royal weddings to intimate gatherings.</p>
+            </div>
+            <div class="glass-card-shine"></div>
+          </div>
+        </div>
+        <div class="journey-step reveal-up" style="--delay:0.15s">
+          <div class="step-marker">
+            <div class="marker-ring"></div>
+            <span class="marker-num">02</span>
+          </div>
+          <div class="step-glass-card">
+            <div class="glass-card-inner">
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <rect x="12" y="8" width="24" height="32" rx="3" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                  <path d="M18 18h12M18 24h12M18 30h8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>Personalize Everything</h3>
+              <p>Add your event details, photos, music, and personal touches. Effortless customization, stunning results.</p>
+            </div>
+            <div class="glass-card-shine"></div>
+          </div>
+        </div>
+        <div class="journey-step reveal-up" style="--delay:0.3s">
+          <div class="step-marker">
+            <div class="marker-ring"></div>
+            <span class="marker-num">03</span>
+          </div>
+          <div class="step-glass-card">
+            <div class="glass-card-inner">
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <path d="M8 16l16-8 16 8v16l-16 8-16-8V16z" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                  <path d="M8 16l16 8 16-8M24 24v16" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                </svg>
+              </div>
+              <h3>Share &amp; Track</h3>
+              <p>Send unique links to each guest. Track opens, RSVPs, and manage your guest list in real-time.</p>
+            </div>
+            <div class="glass-card-shine"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal-up">WHAT MAKES US DIFFERENT</span>
+        <h2 class="section-title reveal-up">Not Just an Invitation.<br/><em>An Experience.</em></h2>
+        <div class="section-line reveal-up"></div>
+      </div>
+
+      <!-- Feature 1: Wax Seal -->
+      <div class="feature-showcase reveal-up">
+        <div class="feature-visual">
+          <div class="visual-frame">
+            <div class="seal-display">
+              <div class="seal-3d">
+                <div class="seal-surface">
+                  <svg viewBox="0 0 80 80" fill="none" width="50" height="50">
+                    <path d="M40 5C40 5 10 28 10 48C10 64.569 23.431 78 40 78C56.569 78 70 64.569 70 48C70 28 40 5 40 5Z" stroke="rgba(10,8,6,0.6)" stroke-width="2" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="seal-particles" id="seal-particles"></div>
+            </div>
+            <span class="visual-caption">Tap to break the seal</span>
+          </div>
+        </div>
+        <div class="feature-info">
+          <span class="feature-tag">SIGNATURE FEATURE</span>
+          <h3>Wax Seal Ceremony</h3>
+          <p>Every invitation begins with a luxurious wax seal that guests must break to reveal the contents. It recreates the anticipation of opening a royal letter &mdash; digitally.</p>
+          <ul class="feature-bullets">
+            <li><span class="bullet-dot"></span>Custom seal designs matching your event theme</li>
+            <li><span class="bullet-dot"></span>Satisfying break animation with haptic feedback</li>
+            <li><span class="bullet-dot"></span>Sound effects for complete immersion</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature 2: Envelope -->
+      <div class="feature-showcase reverse reveal-up">
+        <div class="feature-visual">
+          <div class="visual-frame">
+            <div class="envelope-display">
+              <div class="env-3d">
+                <div class="env-body"></div>
+                <div class="env-flap"></div>
+                <div class="env-card">
+                  <span class="env-card-text">S &amp; A</span>
+                </div>
+              </div>
+            </div>
+            <span class="visual-caption">Hover to reveal</span>
+          </div>
+        </div>
+        <div class="feature-info">
+          <span class="feature-tag">IMMERSIVE REVEAL</span>
+          <h3>3D Envelope Unfolding</h3>
+          <p>After breaking the seal, a beautifully crafted 3D envelope unfolds to reveal the invitation card inside. Every detail is animated with cinematic precision.</p>
+          <ul class="feature-bullets">
+            <li><span class="bullet-dot"></span>Physics-based animation</li>
+            <li><span class="bullet-dot"></span>Multiple envelope styles</li>
+            <li><span class="bullet-dot"></span>Smooth 60fps transitions</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature 3: Storytelling -->
+      <div class="feature-showcase reveal-up">
+        <div class="feature-visual">
+          <div class="visual-frame">
+            <div class="story-display">
+              <div class="story-panels-demo">
+                <div class="sp sp-1"></div>
+                <div class="sp sp-2"></div>
+                <div class="sp sp-3"></div>
+              </div>
+              <div class="story-bar">
+                <div class="story-bar-fill"></div>
+              </div>
+            </div>
+            <span class="visual-caption">Scroll-driven narrative</span>
+          </div>
+        </div>
+        <div class="feature-info">
+          <span class="feature-tag">NARRATIVE DESIGN</span>
+          <h3>Scroll-Driven Storytelling</h3>
+          <p>Your invitation isn't just details &mdash; it's a story. As guests scroll, the event narrative unfolds with parallax effects, animations, and interactive elements.</p>
+          <ul class="feature-bullets">
+            <li><span class="bullet-dot"></span>Cinematic scroll animations</li>
+            <li><span class="bullet-dot"></span>Parallax depth effects</li>
+            <li><span class="bullet-dot"></span>Interactive timeline of your story</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature 4: RSVP -->
+      <div class="feature-showcase reverse reveal-up">
+        <div class="feature-visual">
+          <div class="visual-frame">
+            <div class="rsvp-display">
+              <div class="rsvp-glass-card">
+                <p class="rsvp-q">Will You Attend?</p>
+                <div class="rsvp-opts">
+                  <div class="rsvp-opt active">Joyfully Accept</div>
+                  <div class="rsvp-opt">Regretfully Decline</div>
+                </div>
+                <button class="rsvp-confirm">Confirm</button>
+              </div>
+            </div>
+            <span class="visual-caption">Integrated RSVP</span>
+          </div>
+        </div>
+        <div class="feature-info">
+          <span class="feature-tag">SEAMLESS RESPONSE</span>
+          <h3>Interactive RSVP</h3>
+          <p>No more separate forms or emails. Guests RSVP directly within the invitation experience. Track responses in real-time from your elegant dashboard.</p>
+          <ul class="feature-bullets">
+            <li><span class="bullet-dot"></span>One-click RSVP within the experience</li>
+            <li><span class="bullet-dot"></span>Dietary preferences &amp; plus-one management</li>
+            <li><span class="bullet-dot"></span>Real-time guest list dashboard</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Extra features bento grid -->
+      <div class="bento-grid reveal-up">
+        <div class="bento-item">
+          <div class="bento-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1"/><path d="M16 10v6l4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Live Countdown</h4>
+          <p>Animated countdown timer building excitement for your event</p>
+        </div>
+        <div class="bento-item">
+          <div class="bento-icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M6 22l6-12 6 8 6-10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" stroke-width="1"/></svg>
+          </div>
+          <h4>Photo Gallery</h4>
+          <p>Elegant photo showcase with lightbox and smooth transitions</p>
+        </div>
+        <div class="bento-item">
+          <div class="bento-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="12" r="6" stroke="currentColor" stroke-width="1"/><path d="M6 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="1"/></svg>
+          </div>
+          <h4>Guest Book</h4>
+          <p>Digital guest book for warm wishes and memories</p>
+        </div>
+        <div class="bento-item">
+          <div class="bento-icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M16 4l3 7h7l-5.5 4.5 2 7L16 18l-6.5 4.5 2-7L6 11h7z" stroke="currentColor" stroke-width="1"/></svg>
+          </div>
+          <h4>Particle Effects</h4>
+          <p>Gold dust, petals, confetti &mdash; you choose</p>
+        </div>
+        <div class="bento-item">
+          <div class="bento-icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M10 22V14a6 6 0 1112 0v8" stroke="currentColor" stroke-width="1"/><rect x="7" y="22" width="18" height="5" rx="2.5" stroke="currentColor" stroke-width="1"/></svg>
+          </div>
+          <h4>Ambient Music</h4>
+          <p>Background music matching your event theme</p>
+        </div>
+        <div class="bento-item">
+          <div class="bento-icon">
+            <svg viewBox="0 0 32 32" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1"/><rect x="18" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1"/><rect x="5" y="18" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1"/><rect x="18" y="18" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1"/></svg>
+          </div>
+          <h4>QR Code</h4>
+          <p>Print-ready QR linking to digital experience</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery / Templates -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal-up">CURATED COLLECTION</span>
+        <h2 class="section-title reveal-up">Crafted For<br/><em>Every Occasion</em></h2>
+        <div class="section-line reveal-up"></div>
+        <p class="section-subtitle reveal-up">Each template is a masterpiece. Pick one and make it yours.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-card reveal-up" style="--delay:0s">
+          <div class="gallery-card-inner gc-wedding">
+            <div class="gallery-card-overlay">
+              <span class="gc-category">Wedding</span>
+              <h4 class="gc-name">Royal Wedding</h4>
+              <p class="gc-desc">Gold &amp; ivory elegance</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-card reveal-up" style="--delay:0.1s">
+          <div class="gallery-card-inner gc-birthday">
+            <div class="gallery-card-overlay">
+              <span class="gc-category">Birthday</span>
+              <h4 class="gc-name">Midnight Celebration</h4>
+              <p class="gc-desc">Neon &amp; dark glamour</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-card reveal-up" style="--delay:0.2s">
+          <div class="gallery-card-inner gc-corporate">
+            <div class="gallery-card-overlay">
+              <span class="gc-category">Corporate</span>
+              <h4 class="gc-name">Executive Gala</h4>
+              <p class="gc-desc">Minimal sophistication</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-card reveal-up" style="--delay:0.3s">
+          <div class="gallery-card-inner gc-cultural">
+            <div class="gallery-card-overlay">
+              <span class="gc-category">Cultural</span>
+              <h4 class="gc-name">Heritage Nights</h4>
+              <p class="gc-desc">Rich cultural artistry</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="demo">
+    <div class="cta-bg">
+      <div class="cta-orb cta-orb-1"></div>
+      <div class="cta-orb cta-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content reveal-up">
+        <span class="section-eyebrow">SEE IT IN ACTION</span>
+        <h2 class="cta-title">Experience the<br/><em>Full Journey</em></h2>
+        <p class="cta-desc">Open a sample wedding invitation with all features &mdash; the seal, the envelope, the story, the RSVP. This is what your guests will see.</p>
+        <a href="invitation.html" class="btn-primary btn-lg">
+          <span class="btn-label">Open Demo Invitation</span>
+          <span class="btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+          <div class="btn-glow"></div>
+        </a>
+      </div>
+      <div class="cta-visual reveal-up" style="--delay:0.2s">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-seal"></div>
+          </div>
+          <div class="phone-reflection"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-glow"></div>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo" aria-label="INVITEA">
+            <svg class="logo-icon" viewBox="0 0 36 36" fill="none">
+              <path d="M3 12L13 6L23 12V22H3V12Z" stroke="currentColor" stroke-width="1"/>
+              <path d="M3 12L13 18L23 12" stroke="currentColor" stroke-width="1"/>
+              <path d="M25 3V29" stroke="currentColor" stroke-width="2"/>
+              <path d="M21 3H29M21 29H29" stroke="currentColor" stroke-width="1"/>
+              <path d="M15 8L16 5.5L17 8L19.5 9L17 10L16 12.5L15 10L12.5 9Z" fill="currentColor" opacity="0.7"/>
+            </svg>
+            <span class="logo-text">INVITEA</span>
+          </a>
+          <p class="footer-tagline">Where every invitation<br/>becomes an experience.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Platform</h5>
+            <a href="#">Templates</a>
+            <a href="#">Pricing</a>
+            <a href="#">Features</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="#">About Invitea</a>
+            <a href="#">Contact</a>
+            <a href="#">Careers</a>
+          </div>
+          <div class="footer-col">
+            <h5>Connect</h5>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <span>&copy; INVITEA 2026. All Rights Reserved.</span>
+        <div class="footer-socials">
+          <a href="#" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="landing.js"></script>
+</body>
+</html>
