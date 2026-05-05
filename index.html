@@ -142,6 +142,7 @@
         <li><a href="#journey">How It Works</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#gallery">Occasions</a></li>
+        <li><a href="#templates">Templates</a></li>
         <li><a href="#packages">Packages</a></li>
         <li><a href="#demo">Experience</a></li>
         <li><a href="#start">Start</a></li>
@@ -508,6 +509,63 @@
     </div>
   </section>
 
+  <section class="templates" id="templates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal-up">TEMPLATE GALLERY</span>
+        <h2 class="section-title reveal-up">Choose a Starting<br/><em>Visual Direction</em></h2>
+        <div class="section-line reveal-up"></div>
+        <p class="section-subtitle reveal-up">Clients can start from a curated template direction, then we adapt colors, copy, music, venue details, and RSVP behavior for the final event.</p>
+      </div>
+      <div class="template-grid" role="list" aria-label="Invitation templates">
+        <article class="template-card template-royal reveal-up" style="--delay:0s" role="listitem">
+          <div class="template-preview">
+            <span class="template-monogram">S &amp; A</span>
+          </div>
+          <div class="template-body">
+            <span class="template-type">Wedding</span>
+            <h3>Royal Classic</h3>
+            <p>Ivory, gold, serif typography, and formal ceremony pacing.</p>
+            <a href="#start" class="template-link" data-template="Royal Classic">Choose Template</a>
+          </div>
+        </article>
+        <article class="template-card template-minimal reveal-up" style="--delay:0.1s" role="listitem">
+          <div class="template-preview">
+            <span class="template-monogram">M</span>
+          </div>
+          <div class="template-body">
+            <span class="template-type">Modern</span>
+            <h3>Minimal Editorial</h3>
+            <p>Clean spacing, sharp contrast, and gallery-led storytelling.</p>
+            <a href="#start" class="template-link" data-template="Minimal Editorial">Choose Template</a>
+          </div>
+        </article>
+        <article class="template-card template-floral reveal-up" style="--delay:0.2s" role="listitem">
+          <div class="template-preview">
+            <span class="template-monogram">R</span>
+          </div>
+          <div class="template-body">
+            <span class="template-type">Romantic</span>
+            <h3>Floral Romance</h3>
+            <p>Soft accents, warm motion, guestbook sentiment, and music-first mood.</p>
+            <a href="#start" class="template-link" data-template="Floral Romance">Choose Template</a>
+          </div>
+        </article>
+        <article class="template-card template-heritage reveal-up" style="--delay:0.3s" role="listitem">
+          <div class="template-preview">
+            <span class="template-monogram">H</span>
+          </div>
+          <div class="template-body">
+            <span class="template-type">Cultural</span>
+            <h3>Heritage Night</h3>
+            <p>Rich tones, ceremonial flow, bilingual-ready copy, and family hosting.</p>
+            <a href="#start" class="template-link" data-template="Heritage Night">Choose Template</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="packages" id="packages">
     <div class="container">
       <div class="section-header">
@@ -616,6 +674,17 @@
                 <option>Signature</option>
                 <option>Essential</option>
                 <option>Concierge</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label>
+              <span>Preferred Template</span>
+              <select name="preferredTemplate">
+                <option>Royal Classic</option>
+                <option>Minimal Editorial</option>
+                <option>Floral Romance</option>
+                <option>Heritage Night</option>
+                <option>Custom direction</option>
                 <option>Not sure yet</option>
               </select>
             </label>
@@ -740,6 +809,7 @@
     </div>
   </footer>
 
+  <script type="module" src="/firebase-init.js"></script>
   <script type="module" src="/landing.js"></script>
 </body>
 </html>

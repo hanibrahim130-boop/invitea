@@ -211,18 +211,29 @@
   var intakeForm = document.getElementById('client-intake-form');
   var intakeStatus = document.getElementById('client-intake-status');
   var packageLinks = document.querySelectorAll('[data-package]');
+  var templateLinks = document.querySelectorAll('[data-template]');
   function setPreferredPackage(packageName) {
     if (!intakeForm) return;
     var select = intakeForm.querySelector('[name="package"]');
     if (select && packageName) select.value = packageName;
+  }
+  function setPreferredTemplate(templateName) {
+    if (!intakeForm) return;
+    var select = intakeForm.querySelector('[name="preferredTemplate"]');
+    if (select && templateName) select.value = templateName;
   }
   packageLinks.forEach(function (link) {
     link.addEventListener('click', function () {
       setPreferredPackage(link.getAttribute('data-package'));
     });
   });
+  templateLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      setPreferredTemplate(link.getAttribute('data-template'));
+    });
+  });
   if (intakeForm) {
-    intakeForm.addEventListener('submit', function (e) {
+    intakeForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (!intakeForm.checkValidity()) {
         intakeForm.reportValidity();
@@ -239,11 +250,22 @@
         'Event Date: ' + (data.get('eventDate') || ''),
         'Expected Guests: ' + (data.get('guestCount') || ''),
         'Preferred Package: ' + (data.get('package') || ''),
+        'Preferred Template: ' + (data.get('preferredTemplate') || ''),
         'Design Direction: ' + (data.get('style') || ''),
         '',
         'Event Details:',
         data.get('details') || ''
       ].join('\n');
+
+      if (window.__INVITEA_DB) {
+        try {
+          var doc = {};
+          data.forEach(function(v, k) { doc[k] = v; });
+          doc.submitted_at = window.__INVITEA_TS ? window.__INVITEA_TS() : new Date().toISOString();
+          await window.__INVITEA_ADD(window.__INVITEA_COL(window.__INVITEA_DB, 'intake'), doc);
+        } catch (err) { console.warn('[intake] Firestore write failed', err); }
+      }
+
       window.location.href = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       if (intakeStatus) intakeStatus.textContent = 'Opening your email app with the project brief.';
     });

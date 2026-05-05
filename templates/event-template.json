@@ -48,8 +48,7 @@
     "accentLight": "#e8c9a0"
   },
   "rsvp": {
-    "provider": "web3forms",
-    "accessKey": "YOUR-WEB3FORMS-ACCESS-KEY",
+    "provider": "firestore",
     "subjectPrefix": "RSVP — Client One & Client Two"
   }
 }

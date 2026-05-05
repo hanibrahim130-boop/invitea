@@ -380,8 +380,17 @@ document.addEventListener('DOMContentLoaded', () => {
    * @returns {Promise<boolean>} true on 2xx
    */
   async function submitToProvider(form, cfg) {
-    if (!cfg || !cfg.provider) return true; // no backend configured -> simulate success
+    if (!cfg || !cfg.provider) return true;
     const fd = new FormData(form);
+
+    if (cfg.provider === 'firestore') {
+      if (!window.__INVITEA_DB) { console.warn('[rsvp] Firestore not initialized'); return true; }
+      const data = {};
+      fd.forEach((v, k) => { data[k] = v; });
+      data.submitted_at = window.__INVITEA_TS ? window.__INVITEA_TS() : new Date().toISOString();
+      await window.__INVITEA_ADD(window.__INVITEA_COL(window.__INVITEA_DB, 'rsvps'), data);
+      return true;
+    }
 
     if (cfg.provider === 'web3forms') {
       if (!cfg.accessKey || cfg.accessKey === 'YOUR-WEB3FORMS-ACCESS-KEY') {
