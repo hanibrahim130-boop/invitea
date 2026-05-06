@@ -75,6 +75,12 @@ import './firebase-init.js';
     window.location.href = next;
   }
 
+  async function waitForAuthPersistence() {
+    if (window.__INVITEA_AUTH_PERSISTENCE_READY) {
+      await window.__INVITEA_AUTH_PERSISTENCE_READY;
+    }
+  }
+
   async function createUserProfile(user, displayName) {
     if (!window.__INVITEA_DB || !window.__INVITEA_DOC_REF || !window.__INVITEA_SET_DOC) return;
     try {
@@ -113,6 +119,7 @@ import './firebase-init.js';
         return;
       }
       try {
+        await waitForAuthPersistence();
         await window.__INVITEA_SIGN_IN_EMAIL(window.__INVITEA_AUTH, email, password);
         redirectAfterAuth();
       } catch (err) {
@@ -142,8 +149,9 @@ import './firebase-init.js';
         return;
       }
       try {
+        await waitForAuthPersistence();
         var cred = await window.__INVITEA_SIGN_UP_EMAIL(window.__INVITEA_AUTH, email, password);
-        await createUserProfile(cred.user, name);
+        createUserProfile(cred.user, name);
         redirectAfterAuth();
       } catch (err) {
         signupError.textContent = authErrorMessage(err);
@@ -162,8 +170,9 @@ import './firebase-init.js';
         return;
       }
       try {
+        await waitForAuthPersistence();
         var cred = await window.__INVITEA_SIGN_IN_POPUP(window.__INVITEA_AUTH, window.__INVITEA_GOOGLE_PROVIDER);
-        await createUserProfile(cred.user, cred.user.displayName || '');
+        createUserProfile(cred.user, cred.user.displayName || '');
         redirectAfterAuth();
       } catch (err) {
         var el = loginForm.style.display !== 'none' ? loginError : signupError;

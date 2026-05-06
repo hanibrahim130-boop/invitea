@@ -4,6 +4,8 @@ import './firebase-init.js';
   'use strict';
 
   var dbEl = document.getElementById('db-page');
+  var authStatusEl = document.getElementById('db-auth-status');
+  var authStatusText = document.getElementById('db-auth-status-text');
   var nameEl = document.getElementById('db-user-name');
   var welcomeEl = document.getElementById('db-welcome-name');
   var logoutBtn = document.getElementById('db-logout');
@@ -24,9 +26,15 @@ import './firebase-init.js';
 
   function showPage() {
     if (dbEl) dbEl.style.display = 'flex';
+    if (authStatusEl) authStatusEl.style.display = 'none';
+  }
+
+  function setAuthStatus(message) {
+    if (authStatusText) authStatusText.textContent = message;
   }
 
   function redirectToAuth() {
+    setAuthStatus('Session required. Redirecting to sign in…');
     window.location.href = '/auth?next=' + encodeURIComponent(window.location.pathname + window.location.search);
   }
 
@@ -79,11 +87,17 @@ import './firebase-init.js';
 
   async function init() {
     if (!window.__INVITEA_ON_AUTH || !window.__INVITEA_AUTH) {
-      redirectToAuth();
+      setAuthStatus('Authentication failed to initialize. Refresh the page or open /auth.');
       return;
     }
 
+    var resolved = false;
+    window.setTimeout(function () {
+      if (!resolved) setAuthStatus('Authentication is taking longer than expected. Refresh the page or sign in again.');
+    }, 6000);
+
     window.__INVITEA_ON_AUTH(window.__INVITEA_AUTH, async function (user) {
+      resolved = true;
       if (!user) {
         redirectToAuth();
         return;

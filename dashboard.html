@@ -73,6 +73,33 @@
       flex: 1;
       padding: 48px max(24px, env(safe-area-inset-right)) 80px max(24px, env(safe-area-inset-left));
     }
+    .db-auth-status {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      color: var(--white-60);
+      text-align: center;
+    }
+    .db-auth-status-card {
+      width: min(100%, 420px);
+      padding: 28px;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+    }
+    .db-auth-status-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--white-90);
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+    .db-auth-status-card a {
+      color: var(--gold-light);
+    }
     .db-container {
       max-width: 960px;
       margin: 0 auto;
@@ -448,6 +475,12 @@
   </style>
 </head>
 <body>
+  <div class="db-auth-status" id="db-auth-status">
+    <div class="db-auth-status-card">
+      <strong>Checking your session…</strong>
+      <span id="db-auth-status-text">Preparing your dashboard.</span>
+    </div>
+  </div>
   <div class="db-page" id="db-page" style="display:none">
     <nav class="db-nav">
       <a href="/" class="db-nav-brand">

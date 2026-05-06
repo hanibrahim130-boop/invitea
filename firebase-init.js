@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js';
 import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, getDocs, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
-import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js';
+import { getAuth, GoogleAuthProvider, browserLocalPersistence, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js';
 
 const app = initializeApp({
   apiKey: 'AIzaSyAEL_wjUGJuVOnPbJbrWAvMrjMXSTjITLw',
@@ -14,6 +14,9 @@ const app = initializeApp({
 
 const db = getFirestore(app);
 const auth = getAuth(app);
+const authPersistenceReady = setPersistence(auth, browserLocalPersistence).catch((error) => {
+  console.warn('[firebase] auth persistence failed', error);
+});
 
 window.__INVITEA_DB = db;
 window.__INVITEA_COL = collection;
@@ -22,6 +25,7 @@ window.__INVITEA_TS = serverTimestamp;
 
 // Auth helpers
 window.__INVITEA_AUTH = auth;
+window.__INVITEA_AUTH_PERSISTENCE_READY = authPersistenceReady;
 window.__INVITEA_SIGN_OUT = signOut;
 window.__INVITEA_ON_AUTH = onAuthStateChanged;
 window.__INVITEA_GOOGLE_PROVIDER = new GoogleAuthProvider();
