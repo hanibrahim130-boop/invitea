@@ -1,3 +1,5 @@
+import './firebase-init.js';
+
 (function () {
   'use strict';
 

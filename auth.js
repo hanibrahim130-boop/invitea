@@ -1,3 +1,5 @@
+import './firebase-init.js';
+
 (function () {
   'use strict';
 
@@ -34,6 +36,18 @@
   if (loginBtn) loginBtn.dataset.originalText = loginBtn.textContent;
   if (signupBtn) signupBtn.dataset.originalText = signupBtn.textContent;
 
+  function setAuthError(target, message) {
+    if (target) target.textContent = message;
+  }
+
+  function isEmailAuthReady() {
+    return Boolean(window.__INVITEA_AUTH && window.__INVITEA_SIGN_IN_EMAIL && window.__INVITEA_SIGN_UP_EMAIL);
+  }
+
+  function isGoogleAuthReady() {
+    return Boolean(window.__INVITEA_AUTH && window.__INVITEA_SIGN_IN_POPUP && window.__INVITEA_GOOGLE_PROVIDER);
+  }
+
   function authErrorMessage(err) {
     var code = err && err.code ? err.code : '';
     var map = {
@@ -48,6 +62,9 @@
       'auth/network-request-failed': 'Network error. Please check your connection.',
       'auth/too-many-requests': 'Too many attempts. Please try again later.',
       'auth/unauthorized-domain': 'This domain is not authorized for authentication.',
+      'auth/operation-not-allowed': 'This sign-in method is not enabled in Firebase Authentication.',
+      'auth/configuration-not-found': 'Firebase Authentication is not configured for this project.',
+      'auth/api-key-not-valid': 'Firebase Authentication rejected the current app configuration.',
     };
     return map[code] || (err && err.message) || 'Something went wrong. Please try again.';
   }
@@ -90,6 +107,11 @@
       var email = data.get('email') || '';
       var password = data.get('password') || '';
       setLoading(loginBtn, true);
+      if (!isEmailAuthReady()) {
+        setAuthError(loginError, 'Authentication service is still loading. Refresh and try again.');
+        setLoading(loginBtn, false);
+        return;
+      }
       try {
         await window.__INVITEA_SIGN_IN_EMAIL(window.__INVITEA_AUTH, email, password);
         redirectAfterAuth();
@@ -114,6 +136,11 @@
       var email = data.get('email') || '';
       var password = data.get('password') || '';
       setLoading(signupBtn, true);
+      if (!isEmailAuthReady()) {
+        setAuthError(signupError, 'Authentication service is still loading. Refresh and try again.');
+        setLoading(signupBtn, false);
+        return;
+      }
       try {
         var cred = await window.__INVITEA_SIGN_UP_EMAIL(window.__INVITEA_AUTH, email, password);
         await createUserProfile(cred.user, name);
@@ -128,9 +155,12 @@
   // --- Google Sign In ---
   if (googleBtn) {
     googleBtn.addEventListener('click', async function () {
-      if (!window.__INVITEA_SIGN_IN_POPUP || !window.__INVITEA_GOOGLE_PROVIDER) return;
       loginError.textContent = '';
       signupError.textContent = '';
+      if (!isGoogleAuthReady()) {
+        setAuthError(loginForm.style.display !== 'none' ? loginError : signupError, 'Google sign-in is still loading. Refresh and try again.');
+        return;
+      }
       try {
         var cred = await window.__INVITEA_SIGN_IN_POPUP(window.__INVITEA_AUTH, window.__INVITEA_GOOGLE_PROVIDER);
         await createUserProfile(cred.user, cred.user.displayName || '');
