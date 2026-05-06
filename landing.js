@@ -256,11 +256,16 @@
         'Event Date: ' + (data.get('eventDate') || ''),
         'Expected Guests: ' + (data.get('guestCount') || ''),
         'Preferred Package: ' + (data.get('package') || ''),
+        'Delivery Channels: ' + (data.get('deliveryChannels') || ''),
+        'Guest Contacts: ' + (data.get('contactImportMethod') || ''),
         'Preferred Template: ' + (data.get('preferredTemplate') || ''),
         'Design Direction: ' + (data.get('style') || ''),
         '',
         'Event Details:',
-        data.get('details') || ''
+        data.get('details') || '',
+        '',
+        'Guest List Notes:',
+        data.get('guestListNotes') || ''
       ].join('\n');
 
       var savedToFirestore = false;

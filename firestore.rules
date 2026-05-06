@@ -11,9 +11,12 @@ service cloud.firestore {
         'eventDate',
         'guestCount',
         'package',
+        'deliveryChannels',
+        'contactImportMethod',
         'preferredTemplate',
         'style',
         'details',
+        'guestListNotes',
         'submitted_at'
       ])
       && request.resource.data.clientName is string
@@ -21,11 +24,15 @@ service cloud.firestore {
       && request.resource.data.phone is string
       && request.resource.data.eventType is string
       && request.resource.data.details is string
+      && (!('deliveryChannels' in request.resource.data) || request.resource.data.deliveryChannels is string)
+      && (!('contactImportMethod' in request.resource.data) || request.resource.data.contactImportMethod is string)
+      && (!('guestListNotes' in request.resource.data) || request.resource.data.guestListNotes is string)
       && request.resource.data.clientName.size() <= 120
       && request.resource.data.email.size() <= 180
       && request.resource.data.phone.size() <= 80
       && request.resource.data.eventType.size() <= 80
-      && request.resource.data.details.size() <= 3000;
+      && request.resource.data.details.size() <= 3000
+      && (!('guestListNotes' in request.resource.data) || request.resource.data.guestListNotes.size() <= 3000);
       allow read, update, delete: if false;
     }
 

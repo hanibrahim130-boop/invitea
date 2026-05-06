@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "guest-links": "node tools/generate-guest-links.js",
-    "check": "node --check firebase-init.js && node --check landing.js && node --check invitation.js && node --check invitation-data.js && node --check tools/generate-guest-links.js"
+    "check": "node --check firebase-init.js && node --check landing.js && node --check invitation.js && node --check invitation-data.js && node --check auth.js && node --check dashboard.js && node --check tools/generate-guest-links.js"
   },
   "devDependencies": {
     "firebase-tools": "^15.16.0",

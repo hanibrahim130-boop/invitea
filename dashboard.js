@@ -46,14 +46,13 @@
 
     // Update button states
     if (btnBasic) {
-      btnBasic.textContent = plan === 'basic' ? 'Current Plan' : 'Choose Basic';
-      btnBasic.classList.toggle('primary', plan !== 'basic');
-      btnBasic.disabled = plan === 'basic';
+      btnBasic.textContent = plan === 'basic' ? 'Current Plan' : 'Request Basic Access';
+      btnBasic.classList.toggle('disabled', plan === 'basic');
     }
     if (btnPremium) {
-      btnPremium.textContent = plan === 'premium' ? 'Current Plan' : 'Choose Premium';
+      btnPremium.textContent = plan === 'premium' ? 'Current Plan' : 'Request Premium Access';
       btnPremium.classList.toggle('primary', plan !== 'premium');
-      btnPremium.disabled = plan === 'premium';
+      btnPremium.classList.toggle('disabled', plan === 'premium');
     }
   }
 
@@ -98,17 +97,21 @@
     });
   }
 
-  // Plan button handlers (placeholder for Stripe integration)
+  function requestAccess(planName) {
+    var user = window.__INVITEA_USER;
+    var email = user && user.email ? user.email : '';
+    var body = 'Hi INVITEA, I want ' + planName + ' beta access.\nAccount email: ' + email;
+    window.location.href = 'mailto:hello@invitea.app?subject=' + encodeURIComponent('INVITEA ' + planName + ' Access Request') + '&body=' + encodeURIComponent(body);
+  }
+
   if (btnBasic) {
     btnBasic.addEventListener('click', function () {
-      if (btnBasic.disabled) return;
-      alert('Stripe checkout for Basic ($5/mo) — coming next');
+      requestAccess('Basic');
     });
   }
   if (btnPremium) {
     btnPremium.addEventListener('click', function () {
-      if (btnPremium.disabled) return;
-      alert('Stripe checkout for Premium ($15/mo) — coming next');
+      requestAccess('Premium');
     });
   }
 

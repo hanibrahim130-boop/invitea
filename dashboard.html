@@ -212,9 +212,11 @@
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      text-decoration: none;
       background: transparent;
       cursor: pointer;
       transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      box-sizing: border-box;
     }
     .db-plan-card .plan-btn:hover {
       background: rgba(196,149,106,0.08);
@@ -228,6 +230,13 @@
     }
     .db-plan-card .plan-btn.primary:hover {
       background: var(--gold-light);
+    }
+    .db-plan-card .plan-btn.disabled,
+    .db-plan-card .plan-btn[disabled] {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: not-allowed;
+      transform: none;
     }
     .db-plan-card .plan-current {
       display: inline-block;
@@ -346,7 +355,7 @@
               <li>WhatsApp + Email delivery</li>
               <li>Basic RSVP tracking</li>
             </ul>
-            <button class="plan-btn" id="btn-basic" type="button">Choose Basic</button>
+            <button class="plan-btn" id="btn-basic" type="button">Request Basic Access</button>
           </div>
           <div class="db-plan-card featured" id="plan-premium">
             <span class="plan-current" id="badge-premium" style="display:none">Current Plan</span>
@@ -361,7 +370,7 @@
               <li>Unlimited events</li>
               <li>White-label branding</li>
             </ul>
-            <button class="plan-btn primary" id="btn-premium" type="button">Choose Premium</button>
+            <button class="plan-btn primary" id="btn-premium" type="button">Request Premium Access</button>
           </div>
         </div>
 
