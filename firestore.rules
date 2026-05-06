@@ -75,6 +75,49 @@ service cloud.firestore {
     // User profiles — owner-only access
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      match /events/{eventId} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow create: if request.auth != null
+          && request.auth.uid == userId
+          && request.resource.data.keys().hasOnly([
+            'ownerId',
+            'title',
+            'eventType',
+            'eventDate',
+            'venue',
+            'city',
+            'guestCount',
+            'template',
+            'deliveryChannels',
+            'notes',
+            'sentCount',
+            'responseCount',
+            'status',
+            'createdAt',
+            'updatedAt'
+          ])
+          && request.resource.data.ownerId == userId
+          && request.resource.data.title is string
+          && request.resource.data.eventType is string
+          && request.resource.data.status is string
+          && request.resource.data.sentCount is int
+          && request.resource.data.responseCount is int
+          && request.resource.data.title.size() <= 120
+          && request.resource.data.eventType.size() <= 80
+          && request.resource.data.status.size() <= 40
+          && (!('eventDate' in request.resource.data) || request.resource.data.eventDate is string)
+          && (!('venue' in request.resource.data) || request.resource.data.venue is string)
+          && (!('city' in request.resource.data) || request.resource.data.city is string)
+          && (!('guestCount' in request.resource.data) || request.resource.data.guestCount is string)
+          && (!('template' in request.resource.data) || request.resource.data.template is string)
+          && (!('deliveryChannels' in request.resource.data) || request.resource.data.deliveryChannels is string)
+          && (!('notes' in request.resource.data) || request.resource.data.notes is string)
+          && (!('venue' in request.resource.data) || request.resource.data.venue.size() <= 140)
+          && (!('city' in request.resource.data) || request.resource.data.city.size() <= 80)
+          && (!('notes' in request.resource.data) || request.resource.data.notes.size() <= 1000);
+        allow update, delete: if false;
+      }
     }
   }
 }

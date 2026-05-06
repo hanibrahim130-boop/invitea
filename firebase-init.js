@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js';
-import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, getDocs, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
 import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js';
 
 const app = initializeApp({
@@ -32,6 +32,7 @@ window.__INVITEA_SIGN_IN_POPUP = signInWithPopup;
 // User profile helpers
 window.__INVITEA_DOC_REF = doc;
 window.__INVITEA_GET_DOC = getDoc;
+window.__INVITEA_GET_DOCS = getDocs;
 window.__INVITEA_SET_DOC = setDoc;
 
 window.__INVITEA_USER = null;

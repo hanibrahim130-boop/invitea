@@ -291,10 +291,158 @@
       background: var(--gold-light);
       transform: translateY(-2px);
     }
+    .db-section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+    .db-action-btn {
+      min-height: 42px;
+      padding: 10px 18px;
+      border: 1px solid rgba(196,149,106,0.28);
+      border-radius: 100px;
+      color: var(--gold-light);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .db-action-btn:hover {
+      background: rgba(196,149,106,0.08);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .db-events-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 20px;
+    }
+    .db-form-panel,
+    .db-list-panel {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(16px);
+      padding: 28px;
+    }
+    .db-event-form {
+      display: grid;
+      gap: 14px;
+    }
+    .db-event-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .db-event-form label span {
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white-50);
+    }
+    .db-event-form input,
+    .db-event-form select,
+    .db-event-form textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 12px 14px;
+      background: rgba(3,5,6,0.5);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: var(--white-90);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .db-event-form textarea {
+      resize: vertical;
+      line-height: 1.5;
+    }
+    .db-event-form input:focus,
+    .db-event-form select:focus,
+    .db-event-form textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px var(--gold-glow);
+    }
+    .db-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .db-form-full {
+      grid-column: span 2;
+    }
+    .db-event-submit {
+      min-height: 46px;
+      padding: 12px 20px;
+      background: var(--gold);
+      border-radius: 100px;
+      color: #030506;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .db-event-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    .db-event-status {
+      min-height: 22px;
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    .db-event-list {
+      display: grid;
+      gap: 12px;
+    }
+    .db-event-card {
+      padding: 18px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--white-08);
+      border-radius: var(--radius-md);
+    }
+    .db-event-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--white-90);
+      margin-bottom: 8px;
+    }
+    .db-event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .db-event-meta span {
+      padding: 4px 10px;
+      border: 1px solid var(--white-08);
+      border-radius: 100px;
+      color: var(--white-50);
+      font-size: 0.72rem;
+    }
+    .db-event-card p {
+      color: var(--white-50);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
 
     @media (max-width: 768px) {
       .db-grid { grid-template-columns: 1fr; }
       .db-plan { grid-template-columns: 1fr; }
+      .db-section-head { align-items: flex-start; flex-direction: column; }
+      .db-events-layout { grid-template-columns: 1fr; }
+      .db-form-grid { grid-template-columns: 1fr; }
+      .db-form-full { grid-column: span 1; }
       .db-welcome h1 { font-size: 1.7rem; }
     }
   </style>
@@ -374,10 +522,86 @@
           </div>
         </div>
 
-        <h2 class="db-section-title reveal-up">Your Events</h2>
-        <div class="db-empty reveal-up" id="db-events-empty">
-          <p>No events yet. Create your first invitation to get started.</p>
-          <button class="btn-primary" id="btn-create-event" type="button">Create Invitation</button>
+        <div class="db-section-head reveal-up">
+          <h2 class="db-section-title">Your Events</h2>
+          <button class="db-action-btn" id="btn-create-event" type="button">New Event</button>
+        </div>
+
+        <div class="db-events-layout reveal-up">
+          <div class="db-form-panel">
+            <form class="db-event-form" id="event-form">
+              <div class="db-form-grid">
+                <label class="db-form-full">
+                  <span>Event Name</span>
+                  <input type="text" name="title" maxlength="120" required placeholder="Sarah & Ahmed Wedding" />
+                </label>
+                <label>
+                  <span>Event Type</span>
+                  <select name="eventType" required>
+                    <option value="">Select type</option>
+                    <option>Wedding</option>
+                    <option>Engagement</option>
+                    <option>Birthday</option>
+                    <option>Corporate Event</option>
+                    <option>Private Dinner</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Event Date</span>
+                  <input type="date" name="eventDate" />
+                </label>
+                <label>
+                  <span>Venue</span>
+                  <input type="text" name="venue" maxlength="140" placeholder="Venue name" />
+                </label>
+                <label>
+                  <span>City</span>
+                  <input type="text" name="city" maxlength="80" placeholder="Beirut" />
+                </label>
+                <label>
+                  <span>Guest Count</span>
+                  <select name="guestCount">
+                    <option value="">Select range</option>
+                    <option>Under 50</option>
+                    <option>50-150</option>
+                    <option>150-300</option>
+                    <option>300+</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Template</span>
+                  <select name="template">
+                    <option>Royal Classic</option>
+                    <option>Minimal Editorial</option>
+                    <option>Floral Romance</option>
+                    <option>Heritage Night</option>
+                    <option>Custom direction</option>
+                  </select>
+                </label>
+                <label class="db-form-full">
+                  <span>Delivery Channels</span>
+                  <select name="deliveryChannels">
+                    <option>WhatsApp and email</option>
+                    <option>WhatsApp only</option>
+                    <option>Email only</option>
+                  </select>
+                </label>
+                <label class="db-form-full">
+                  <span>Notes</span>
+                  <textarea name="notes" rows="4" maxlength="1000" placeholder="Guest list status, language, RSVP deadline, plus-one rules..."></textarea>
+                </label>
+              </div>
+              <button class="db-event-submit" id="event-submit" type="submit">Create Event</button>
+              <p class="db-event-status" id="event-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+          <div class="db-list-panel">
+            <div class="db-event-list" id="events-list"></div>
+            <div class="db-empty" id="db-events-empty">
+              <p>No events yet. Create your first invitation workspace to get started.</p>
+            </div>
+          </div>
         </div>
       </div>
     </main>
