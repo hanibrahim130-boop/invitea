@@ -18,7 +18,7 @@
     }
     .auth-card {
       width: min(100%, 420px);
-      background: var(--glass);
+      background: linear-gradient(180deg, rgba(196,149,106,0.075), rgba(255,255,255,0.025));
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-xl);
       backdrop-filter: blur(18px);
@@ -39,6 +39,33 @@
     .auth-logo svg {
       width: 28px;
       height: 28px;
+    }
+    .auth-kicker {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .auth-title {
+      margin-bottom: 10px;
+      color: var(--white-90);
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.1;
+      text-align: center;
+    }
+    .auth-copy {
+      max-width: 30ch;
+      margin: 0 auto 28px;
+      color: var(--white-50);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      text-align: center;
     }
     .auth-tabs {
       display: flex;
@@ -92,7 +119,7 @@
       color: var(--white-90);
       font-family: var(--font-body);
       font-size: 0.92rem;
-      font-weight: 300;
+      font-weight: 400;
       outline: none;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
@@ -165,11 +192,12 @@
       font-size: 0.84rem;
       font-weight: 500;
       cursor: pointer;
-      transition: background 0.3s, border-color 0.3s;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
     }
     .auth-google:hover {
       background: rgba(255,255,255,0.08);
       border-color: rgba(255,255,255,0.15);
+      color: var(--white-90);
     }
     .auth-error {
       min-height: 20px;
@@ -187,6 +215,24 @@
       transition: color 0.3s;
     }
     .auth-back:hover { color: var(--gold); }
+    @media (max-width: 480px) {
+      .auth-page {
+        align-items: start;
+        padding-top: calc(32px + env(safe-area-inset-top));
+      }
+      .auth-card {
+        padding: 32px 22px;
+        border-radius: var(--radius-lg);
+      }
+      .auth-title {
+        font-size: 1.75rem;
+      }
+      .auth-form input,
+      .auth-submit,
+      .auth-google {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -203,9 +249,13 @@
         INVITEA
       </a>
 
-      <div class="auth-tabs" id="auth-tabs">
-        <button class="auth-tab active" data-tab="login">Sign In</button>
-        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      <span class="auth-kicker">Account Access</span>
+      <h1 class="auth-title">Manage every invitation from one place.</h1>
+      <p class="auth-copy">Sign in to track events, guest delivery, and RSVP activity.</p>
+
+      <div class="auth-tabs" id="auth-tabs" role="tablist" aria-label="Authentication options">
+        <button class="auth-tab active" data-tab="login" type="button" role="tab" aria-selected="true">Sign In</button>
+        <button class="auth-tab" data-tab="signup" type="button" role="tab" aria-selected="false">Sign Up</button>
       </div>
 
       <!-- Login Form -->

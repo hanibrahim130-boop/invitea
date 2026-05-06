@@ -14,7 +14,9 @@ import './firebase-init.js';
 
   function showTab(name) {
     tabs.forEach(function (t) {
-      t.classList.toggle('active', t.getAttribute('data-tab') === name);
+      var isSelected = t.getAttribute('data-tab') === name;
+      t.classList.toggle('active', isSelected);
+      t.setAttribute('aria-selected', String(isSelected));
     });
     loginForm.style.display = name === 'login' ? 'flex' : 'none';
     signupForm.style.display = name === 'signup' ? 'flex' : 'none';

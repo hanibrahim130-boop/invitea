@@ -80,6 +80,9 @@
       padding: 32px;
       color: var(--white-60);
       text-align: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(196,149,106,0.08), transparent 36%),
+        var(--bg);
     }
     .db-auth-status-card {
       width: min(100%, 420px);
@@ -101,26 +104,34 @@
       color: var(--gold-light);
     }
     .db-container {
-      max-width: 960px;
+      max-width: 1040px;
       margin: 0 auto;
     }
     .db-welcome {
+      padding: 28px;
       margin-bottom: 40px;
+      background: linear-gradient(135deg, rgba(196,149,106,0.08), rgba(255,255,255,0.025));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.22);
     }
     .db-welcome h1 {
       font-family: var(--font-display);
-      font-size: 2.2rem;
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 400;
       color: var(--white-90);
       margin-bottom: 10px;
+      line-height: 1.1;
     }
     .db-welcome h1 em {
       color: var(--gold-light);
       font-style: normal;
     }
     .db-welcome p {
-      font-size: 0.92rem;
-      color: var(--white-40);
+      max-width: 58ch;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--white-50);
     }
 
     .db-grid {
@@ -130,7 +141,7 @@
       margin-bottom: 40px;
     }
     .db-card {
-      background: var(--glass);
+      background: linear-gradient(180deg, rgba(196,149,106,0.05), rgba(255,255,255,0.02));
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-lg);
       backdrop-filter: blur(16px);
@@ -283,7 +294,7 @@
       font-size: 1.35rem;
       font-weight: 400;
       color: var(--white-90);
-      margin-bottom: 16px;
+      margin-bottom: 0;
     }
     .db-empty {
       padding: 48px;
@@ -349,6 +360,9 @@
     }
     .db-form-panel,
     .db-list-panel {
+      min-height: 100%;
+    }
+    .db-list-panel {
       background: var(--glass);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-lg);
@@ -383,13 +397,25 @@
       color: var(--white-90);
       font-family: var(--font-body);
       font-size: 0.9rem;
-      font-weight: 300;
+      font-weight: 400;
       outline: none;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
     .db-event-form textarea {
       resize: vertical;
       line-height: 1.5;
+    }
+    .db-event-form select {
+      appearance: none;
+      padding-right: 42px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(196,149,106,0.62)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+    }
+    .db-event-form select option {
+      background: #080c0e;
+      color: var(--white-90);
     }
     .db-event-form input:focus,
     .db-event-form select:focus,
@@ -406,7 +432,7 @@
       grid-column: span 2;
     }
     .db-event-submit {
-      min-height: 46px;
+      min-height: 48px;
       padding: 12px 20px;
       background: var(--gold);
       border-radius: 100px;
@@ -464,13 +490,41 @@
     }
 
     @media (max-width: 768px) {
+      .db-nav {
+        gap: 12px;
+        padding-top: calc(14px + env(safe-area-inset-top));
+      }
+      .db-nav-user { gap: 10px; }
+      .db-nav-name { max-width: 96px; }
+      .db-main {
+        padding: 28px max(18px, env(safe-area-inset-right)) 56px max(18px, env(safe-area-inset-left));
+      }
       .db-grid { grid-template-columns: 1fr; }
       .db-plan { grid-template-columns: 1fr; }
       .db-section-head { align-items: flex-start; flex-direction: column; }
       .db-events-layout { grid-template-columns: 1fr; }
       .db-form-grid { grid-template-columns: 1fr; }
       .db-form-full { grid-column: span 1; }
-      .db-welcome h1 { font-size: 1.7rem; }
+      .db-welcome { padding: 24px; margin-bottom: 28px; }
+      .db-welcome h1 { font-size: 1.9rem; }
+      .db-card,
+      .db-plan-card,
+      .db-list-panel,
+      .db-empty { padding: 24px; }
+      .db-event-form input,
+      .db-event-form select,
+      .db-event-form textarea { font-size: 16px; }
+    }
+    @media (max-width: 420px) {
+      .db-nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .db-nav-user {
+        justify-content: space-between;
+        width: 100%;
+      }
+      .db-nav-name { max-width: 180px; }
     }
   </style>
 </head>
