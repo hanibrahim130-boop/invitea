@@ -71,7 +71,7 @@ import './firebase-init.js';
 
   function redirectAfterAuth() {
     var params = new URLSearchParams(window.location.search);
-    var next = params.get('next') || '/dashboard.html';
+    var next = params.get('next') || '/dashboard';
     window.location.href = next;
   }
 

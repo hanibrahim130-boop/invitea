@@ -27,7 +27,7 @@ import './firebase-init.js';
   }
 
   function redirectToAuth() {
-    window.location.href = '/auth.html?next=' + encodeURIComponent(window.location.pathname + window.location.search);
+    window.location.href = '/auth?next=' + encodeURIComponent(window.location.pathname + window.location.search);
   }
 
   async function loadProfile(user) {

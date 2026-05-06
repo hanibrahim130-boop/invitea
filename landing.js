@@ -317,10 +317,10 @@
       var link = authItem.querySelector('a');
       if (!link) return;
       if (user) {
-        link.href = '/dashboard.html';
+        link.href = '/dashboard';
         link.textContent = 'Dashboard';
       } else {
-        link.href = '/auth.html';
+        link.href = '/auth';
         link.textContent = 'Login';
       }
     });

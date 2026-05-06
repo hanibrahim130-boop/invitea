@@ -7,6 +7,14 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
+        "source": "/auth",
+        "destination": "/auth.html"
+      },
+      {
+        "source": "/dashboard",
+        "destination": "/dashboard.html"
+      },
+      {
         "source": "/invitation.html",
         "destination": "/invitation.html"
       },
