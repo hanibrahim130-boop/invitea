@@ -17,7 +17,9 @@
   --white: #fff;
   --white-90: rgba(255,255,255,0.9);
   --white-70: rgba(255,255,255,0.7);
+  --white-60: rgba(255,255,255,0.6);
   --white-50: rgba(255,255,255,0.5);
+  --white-40: rgba(255,255,255,0.4);
   --white-30: rgba(255,255,255,0.3);
   --white-15: rgba(255,255,255,0.15);
   --white-08: rgba(255,255,255,0.08);
@@ -43,7 +45,7 @@ html {
 }
 body {
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 400;
   background: var(--bg);
   color: var(--white-70);
   overflow-x: hidden;
@@ -538,7 +540,6 @@ a { text-decoration: none; color: inherit; }
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 400;
-  letter-spacing: 0.01em;
   color: var(--white-90);
   margin-bottom: 48px;
   letter-spacing: 0.02em;
@@ -593,7 +594,6 @@ a { text-decoration: none; color: inherit; }
   font-family: var(--font-script);
   font-size: clamp(4rem, 10vw, 7rem);
   font-weight: 400;
-  line-height: 1.05;
   color: var(--white-90);
   line-height: 1.1;
   margin-bottom: 16px;
@@ -920,7 +920,7 @@ a { text-decoration: none; color: inherit; }
   color: var(--white-90);
   font-family: var(--font-body);
   font-size: 0.88rem;
-  font-weight: 300;
+  font-weight: 400;
   transition: border-color 0.3s;
   backdrop-filter: blur(8px);
   outline: none;
@@ -1055,7 +1055,7 @@ a { text-decoration: none; color: inherit; }
   color: var(--white-90);
   font-family: var(--font-body);
   font-size: 0.88rem;
-  font-weight: 300;
+  font-weight: 400;
   outline: none;
   transition: border-color 0.3s;
 }
@@ -1191,6 +1191,10 @@ a { text-decoration: none; color: inherit; }
   .rsvp-response-toggle { gap: 10px; }
   .rsvp-submit-btn,
   .guestbook-form button { width: 100%; }
+  .inv-section { padding: 64px 0; }
+  .inv-section-title { margin-bottom: 32px; }
+  .inv-actions { margin-top: 24px; }
+  .cal-btn { width: 100%; }
 }
 
 /* ---- Reduced Motion ---- */

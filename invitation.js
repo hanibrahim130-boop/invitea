@@ -320,8 +320,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.rsvp-toggle-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.rsvp-toggle-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.rsvp-toggle-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       if (rsvpResponseInput) rsvpResponseInput.value = btn.getAttribute('data-value') || 'accept';
     });
   });
