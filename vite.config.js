@@ -1,5 +1,8 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // Multi-page setup: landing + invitation experience.
 // public/ is copied verbatim to dist/ — favicon, robots, sitemap, data/*.json live there.
