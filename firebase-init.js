@@ -1,6 +1,6 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js';
-import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, getDocs, setDoc } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
-import { getAuth, GoogleAuthProvider, browserLocalPersistence, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider, browserLocalPersistence, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 
 const app = initializeApp({
   apiKey: 'AIzaSyAEL_wjUGJuVOnPbJbrWAvMrjMXSTjITLw',
